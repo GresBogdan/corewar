@@ -44,6 +44,7 @@ char				*ft_strrchr(const char *s, int c);
 char				*ft_strstr(const char *s1, const char *s2);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strtrim(char const *s);
+char				*ft_strtrim_cw(char *s);
 
 int					ft_strstr_cw(const char *s1, const char *s2);
 int					ft_atoi(const char *str);

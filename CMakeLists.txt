@@ -83,6 +83,7 @@ add_executable(corewar
         libftprintf/j.c
         libftprintf/libft.h
         libftprintf/ft_split_cw.c
+        libftprintf/ft_atoi_cw.c
         asm.c
         asm.h
         ft_strstr_cw.c

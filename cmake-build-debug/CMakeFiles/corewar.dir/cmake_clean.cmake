@@ -75,6 +75,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/corewar.dir/libftprintf/i.c.o"
   "CMakeFiles/corewar.dir/libftprintf/j.c.o"
   "CMakeFiles/corewar.dir/libftprintf/ft_split_cw.c.o"
+  "CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.o"
   "CMakeFiles/corewar.dir/asm.c.o"
   "CMakeFiles/corewar.dir/ft_strstr_cw.c.o"
   "CMakeFiles/corewar.dir/pars_two.c.o"

@@ -170,7 +170,7 @@ void	start_pars(int fd)
 		if (line[0] != '#' && ft_strlen(line) != 0 && check_sp(line) != 1 && ((main_asm->flag & 3) != 3) )
 			check_name_comment(line, main_asm);
 		else if (line[0] != '#' && check_sp(line) != 1 && ft_strlen(line) != 0)
-			pars_two(line, main_asm, all_comand);
+			pars_two(line, main_asm, all_comand, 0);
 		else
 			free(line);
 	}

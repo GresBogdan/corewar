@@ -13,6 +13,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/bgres/Documents/corewar/libftprintf/e.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/libftprintf/e.c.o"
   "/Users/bgres/Documents/corewar/libftprintf/f.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/libftprintf/f.c.o"
   "/Users/bgres/Documents/corewar/libftprintf/ft_atoi.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/libftprintf/ft_atoi.c.o"
+  "/Users/bgres/Documents/corewar/libftprintf/ft_atoi_cw.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.o"
   "/Users/bgres/Documents/corewar/libftprintf/ft_bzero.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/libftprintf/ft_bzero.c.o"
   "/Users/bgres/Documents/corewar/libftprintf/ft_foreach.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/libftprintf/ft_foreach.c.o"
   "/Users/bgres/Documents/corewar/libftprintf/ft_is_negative.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/libftprintf/ft_is_negative.c.o"

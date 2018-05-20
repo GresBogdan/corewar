@@ -28,7 +28,7 @@ ft_memdel.c ft_strnew.c ft_strdel.c ft_striter.c ft_striteri.c ft_strmap.c \
 ft_strmapi.c ft_strequ.c ft_strnequ.c ft_strsub.c ft_strjoin.c ft_strtrim.c \
 ft_strsplit.c ft_itoa.c ft_lstadd.c ft_lstdel.c ft_lstdelone.c ft_lstiter.c \
 ft_lstmap.c ft_lstnew.c ft_foreach.c ft_iterative_factorial.c ft_sqrt.c \
-ft_is_negative.c ft_ispar.c ft_split_cw.c ft_strstr_cw.c ft_atoi_cw.c
+ft_is_negative.c ft_ispar.c ft_split_cw.c ft_strstr_cw.c ft_atoi_cw.c ft_strtrim_cw.c
 
 OBJ = $(SRC:.c=.o)
 

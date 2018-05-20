@@ -366,6 +366,33 @@ libftprintf/ft_atoi.c.s:
 	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/libftprintf/ft_atoi.c.s
 .PHONY : libftprintf/ft_atoi.c.s
 
+libftprintf/ft_atoi_cw.o: libftprintf/ft_atoi_cw.c.o
+
+.PHONY : libftprintf/ft_atoi_cw.o
+
+# target to build an object file
+libftprintf/ft_atoi_cw.c.o:
+	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.o
+.PHONY : libftprintf/ft_atoi_cw.c.o
+
+libftprintf/ft_atoi_cw.i: libftprintf/ft_atoi_cw.c.i
+
+.PHONY : libftprintf/ft_atoi_cw.i
+
+# target to preprocess a source file
+libftprintf/ft_atoi_cw.c.i:
+	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.i
+.PHONY : libftprintf/ft_atoi_cw.c.i
+
+libftprintf/ft_atoi_cw.s: libftprintf/ft_atoi_cw.c.s
+
+.PHONY : libftprintf/ft_atoi_cw.s
+
+# target to generate assembly for a file
+libftprintf/ft_atoi_cw.c.s:
+	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.s
+.PHONY : libftprintf/ft_atoi_cw.c.s
+
 libftprintf/ft_bzero.o: libftprintf/ft_bzero.c.o
 
 .PHONY : libftprintf/ft_bzero.o
@@ -2319,6 +2346,9 @@ help:
 	@echo "... libftprintf/ft_atoi.o"
 	@echo "... libftprintf/ft_atoi.i"
 	@echo "... libftprintf/ft_atoi.s"
+	@echo "... libftprintf/ft_atoi_cw.o"
+	@echo "... libftprintf/ft_atoi_cw.i"
+	@echo "... libftprintf/ft_atoi_cw.s"
 	@echo "... libftprintf/ft_bzero.o"
 	@echo "... libftprintf/ft_bzero.i"
 	@echo "... libftprintf/ft_bzero.s"

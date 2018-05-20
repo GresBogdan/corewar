@@ -47,6 +47,8 @@ CMakeFiles/corewar.dir/libftprintf/ft_atoi.c.o: ../libftprintf/ft_atoi.c
 CMakeFiles/corewar.dir/libftprintf/ft_atoi.c.o: ../libftprintf/get_next_line.h
 CMakeFiles/corewar.dir/libftprintf/ft_atoi.c.o: ../libftprintf/libft.h
 
+CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.o: ../libftprintf/ft_atoi_cw.c
+
 CMakeFiles/corewar.dir/libftprintf/ft_bzero.c.o: ../libftprintf/ft_bzero.c
 CMakeFiles/corewar.dir/libftprintf/ft_bzero.c.o: ../libftprintf/get_next_line.h
 CMakeFiles/corewar.dir/libftprintf/ft_bzero.c.o: ../libftprintf/libft.h

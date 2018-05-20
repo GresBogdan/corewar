@@ -47,6 +47,8 @@ CMakeFiles/corewar.dir/libftprintf/ft_atoi.c.o
  /Users/bgres/Documents/corewar/libftprintf/ft_atoi.c
  /Users/bgres/Documents/corewar/libftprintf/get_next_line.h
  /Users/bgres/Documents/corewar/libftprintf/libft.h
+CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.o
+ /Users/bgres/Documents/corewar/libftprintf/ft_atoi_cw.c
 CMakeFiles/corewar.dir/libftprintf/ft_bzero.c.o
  /Users/bgres/Documents/corewar/libftprintf/ft_bzero.c
  /Users/bgres/Documents/corewar/libftprintf/get_next_line.h

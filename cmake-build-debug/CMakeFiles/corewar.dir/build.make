@@ -1881,9 +1881,33 @@ CMakeFiles/corewar.dir/libftprintf/ft_split_cw.c.o.provides: CMakeFiles/corewar.
 CMakeFiles/corewar.dir/libftprintf/ft_split_cw.c.o.provides.build: CMakeFiles/corewar.dir/libftprintf/ft_split_cw.c.o
 
 
+CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.o: CMakeFiles/corewar.dir/flags.make
+CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.o: ../libftprintf/ft_atoi_cw.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_77) "Building C object CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.o   -c /Users/bgres/Documents/corewar/libftprintf/ft_atoi_cw.c
+
+CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/bgres/Documents/corewar/libftprintf/ft_atoi_cw.c > CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.i
+
+CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/bgres/Documents/corewar/libftprintf/ft_atoi_cw.c -o CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.s
+
+CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.o.requires:
+
+.PHONY : CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.o.requires
+
+CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.o.provides: CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.o.requires
+	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.o.provides.build
+.PHONY : CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.o.provides
+
+CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.o.provides.build: CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.o
+
+
 CMakeFiles/corewar.dir/asm.c.o: CMakeFiles/corewar.dir/flags.make
 CMakeFiles/corewar.dir/asm.c.o: ../asm.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_77) "Building C object CMakeFiles/corewar.dir/asm.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_78) "Building C object CMakeFiles/corewar.dir/asm.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/corewar.dir/asm.c.o   -c /Users/bgres/Documents/corewar/asm.c
 
 CMakeFiles/corewar.dir/asm.c.i: cmake_force
@@ -1907,7 +1931,7 @@ CMakeFiles/corewar.dir/asm.c.o.provides.build: CMakeFiles/corewar.dir/asm.c.o
 
 CMakeFiles/corewar.dir/ft_strstr_cw.c.o: CMakeFiles/corewar.dir/flags.make
 CMakeFiles/corewar.dir/ft_strstr_cw.c.o: ../ft_strstr_cw.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_78) "Building C object CMakeFiles/corewar.dir/ft_strstr_cw.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building C object CMakeFiles/corewar.dir/ft_strstr_cw.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/corewar.dir/ft_strstr_cw.c.o   -c /Users/bgres/Documents/corewar/ft_strstr_cw.c
 
 CMakeFiles/corewar.dir/ft_strstr_cw.c.i: cmake_force
@@ -1931,7 +1955,7 @@ CMakeFiles/corewar.dir/ft_strstr_cw.c.o.provides.build: CMakeFiles/corewar.dir/f
 
 CMakeFiles/corewar.dir/pars_two.c.o: CMakeFiles/corewar.dir/flags.make
 CMakeFiles/corewar.dir/pars_two.c.o: ../pars_two.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building C object CMakeFiles/corewar.dir/pars_two.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Building C object CMakeFiles/corewar.dir/pars_two.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/corewar.dir/pars_two.c.o   -c /Users/bgres/Documents/corewar/pars_two.c
 
 CMakeFiles/corewar.dir/pars_two.c.i: cmake_force
@@ -1955,7 +1979,7 @@ CMakeFiles/corewar.dir/pars_two.c.o.provides.build: CMakeFiles/corewar.dir/pars_
 
 CMakeFiles/corewar.dir/tst.c.o: CMakeFiles/corewar.dir/flags.make
 CMakeFiles/corewar.dir/tst.c.o: ../tst.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Building C object CMakeFiles/corewar.dir/tst.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_81) "Building C object CMakeFiles/corewar.dir/tst.c.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/corewar.dir/tst.c.o   -c /Users/bgres/Documents/corewar/tst.c
 
 CMakeFiles/corewar.dir/tst.c.i: cmake_force
@@ -2055,6 +2079,7 @@ corewar_OBJECTS = \
 "CMakeFiles/corewar.dir/libftprintf/i.c.o" \
 "CMakeFiles/corewar.dir/libftprintf/j.c.o" \
 "CMakeFiles/corewar.dir/libftprintf/ft_split_cw.c.o" \
+"CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.o" \
 "CMakeFiles/corewar.dir/asm.c.o" \
 "CMakeFiles/corewar.dir/ft_strstr_cw.c.o" \
 "CMakeFiles/corewar.dir/pars_two.c.o" \
@@ -2139,13 +2164,14 @@ corewar: CMakeFiles/corewar.dir/libftprintf/h.c.o
 corewar: CMakeFiles/corewar.dir/libftprintf/i.c.o
 corewar: CMakeFiles/corewar.dir/libftprintf/j.c.o
 corewar: CMakeFiles/corewar.dir/libftprintf/ft_split_cw.c.o
+corewar: CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.o
 corewar: CMakeFiles/corewar.dir/asm.c.o
 corewar: CMakeFiles/corewar.dir/ft_strstr_cw.c.o
 corewar: CMakeFiles/corewar.dir/pars_two.c.o
 corewar: CMakeFiles/corewar.dir/tst.c.o
 corewar: CMakeFiles/corewar.dir/build.make
 corewar: CMakeFiles/corewar.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_81) "Linking C executable corewar"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_82) "Linking C executable corewar"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/corewar.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -2229,6 +2255,7 @@ CMakeFiles/corewar.dir/requires: CMakeFiles/corewar.dir/libftprintf/h.c.o.requir
 CMakeFiles/corewar.dir/requires: CMakeFiles/corewar.dir/libftprintf/i.c.o.requires
 CMakeFiles/corewar.dir/requires: CMakeFiles/corewar.dir/libftprintf/j.c.o.requires
 CMakeFiles/corewar.dir/requires: CMakeFiles/corewar.dir/libftprintf/ft_split_cw.c.o.requires
+CMakeFiles/corewar.dir/requires: CMakeFiles/corewar.dir/libftprintf/ft_atoi_cw.c.o.requires
 CMakeFiles/corewar.dir/requires: CMakeFiles/corewar.dir/asm.c.o.requires
 CMakeFiles/corewar.dir/requires: CMakeFiles/corewar.dir/ft_strstr_cw.c.o.requires
 CMakeFiles/corewar.dir/requires: CMakeFiles/corewar.dir/pars_two.c.o.requires
