@@ -34,6 +34,7 @@ char	*get_name(char *line, int flag)
 	{
 		if ((ft_strstr_cw(&line[i], ".name")) != 0)
 		{
+			g_error++;
 			ft_printf("error on line %d", g_line);
 			exit(0);
 		}
@@ -42,6 +43,7 @@ char	*get_name(char *line, int flag)
 		//ft_printf("%s\n", &line[i]);
 		if (line[i] != '\"')
 		{
+			g_error++;
 			ft_printf("error on line %d", g_line);
 			exit(0);
 		}
@@ -53,6 +55,7 @@ char	*get_name(char *line, int flag)
 			j++;
 		if (line[i + j] != '\0' && line[i +j] != '#')
 		{
+			g_error++;
 			ft_printf("error on line %d", g_line);
 			exit(0);			
 		}
@@ -61,6 +64,7 @@ char	*get_name(char *line, int flag)
 	{
 		if ((ft_strstr_cw(&line[i], ".comment")) != 0)
 		{
+			g_error++;
 			ft_printf("error on line %d", g_line);
 			exit(0);
 		}
@@ -69,6 +73,7 @@ char	*get_name(char *line, int flag)
 		//ft_printf("%s\n", &line[i]);
 		if (line[i] != '\"')
 		{
+			g_error++;
 			ft_printf("error on line %d", g_line);
 			exit(0);
 		}
@@ -80,6 +85,7 @@ char	*get_name(char *line, int flag)
 			j++;
 		if (line[i + j] != '\0' && line[i +j] != '#')
 		{
+			g_error++;
 			ft_printf("error on line %d", g_line);
 			exit(0);			
 		}
@@ -116,6 +122,7 @@ void	check_name_comment(char *line, t_main *main_asm)
 			if ((main_asm->flag & 1) != 0 || (ft_strstr_cw(&line[k], ".name") != 0))
 			{
 				//ft_printf("da4\n");
+				g_error++;
 				ft_printf("double name, chek line %d", g_line);
 				exit(0);
 			}
@@ -132,6 +139,7 @@ void	check_name_comment(char *line, t_main *main_asm)
 			k = skip_space(line);
 			if ((main_asm->flag & 2) != 0 || (ft_strstr_cw(&line[k], ".comment") != 0))
 			{
+				g_error++;
 				ft_printf("double comment, chek line %d", g_line);
 				exit(0);
 			}
@@ -200,5 +208,11 @@ int main(int ac, char **av)
 	}
 	start_pars(fd);
 	//system("leaks a.out");
+	if (g_error > 0)
+	{
+		ft_printf("\nOops, you hawe %d errors\n", g_error);
+	}
+	else
+		ft_printf("\nvse zbs!\n");
 	return (0);
 }

@@ -111,7 +111,7 @@ t_comand	**make_f_list(void)
 	a[8]->name = ft_strdup(ZJMP);
 	a[8]->op = 0;
 	a[8]->lz = 2;
-	a[8]->args = 0x030000;
+	a[8]->args = 0x010000;
 	a[8]->count = 1;
 	a[8]->op_est = 0;
 
@@ -195,13 +195,14 @@ char		*check_t_reg(char *param, t_to_code *f, unsigned char *op, char position)
 {
 	if (ft_strlen(param) >= 2 && ft_strlen(param) <= 3 && param[0] == 'r' && ft_isdigit(param[1]) && (ft_isdigit(param[2]) || param[2] == '\0'))
 	{
-		ft_printf("op tyt = %d\n",*op);
 		*op = *op | (1 << (2 * (3 - position + 1)));
-				ft_printf("a tyt op  = %d\n",*op);
 		return (param);
 	}
 	else if (f->op_est == 0)
+	{
+		g_error++;
 		ft_printf("ERROR in check_t_reg s =|%s|line=%d\n",param, g_line);
+	}
 	return (NULL);
 }
 
@@ -209,14 +210,15 @@ char		*check_t_ind(char *param, t_to_code *f, unsigned char *op, char position)
 {
 	if (param != NULL && (check_all_isdigit(param) == 0 || (check_all_isdigit(param) == 1 && ft_strlen(param) > 1 && param[0] == '-')))
 	{
-		ft_printf("op tyt = %d\n",*op);
 		*op = *op | (3 << (2 * (3 - position + 1)));
-		ft_printf("a tyt op  = %d\n",*op);
 		return (param);
 	}
 	else if (f->op_est == 0)
-	ft_printf("ERROR in check_t_ind line %d\n", g_line);
-		return (NULL);
+	{
+		g_error++;
+		ft_printf("ERROR in check_t_ind line %d\n", g_line);
+	}
+	return (NULL);
 }
 
 char		*check_t_dir(char *param, t_to_code *f, unsigned char *op, int position)
@@ -232,10 +234,15 @@ char		*check_t_dir(char *param, t_to_code *f, unsigned char *op, int position)
 	}
 	else if (param != NULL && ft_strlen(param) >= 3 && param[0] == '%' && param[1] == ':')
 	{
+		*op = *op | (2 << (2 * (3 - position + 1)));
 		f->arg_lbl.mas[position - 1] = ft_strdup(param);
+		return(param);
 	}
 	else if (f->op_est == 0)
-	ft_printf("!!!!ERROR in check_t_dir line %d\n", g_line);
+	{
+		g_error++;
+		ft_printf("!!!!ERROR s= |%s| in check_t_dir line %d, len = %d a[0] =|%c| a[1] = |%c|\n", param,g_line, ft_strlen(param), param[0], param[1]);
+	}
 	return (NULL);
 }
 
@@ -259,6 +266,8 @@ char		*check_t_dir_ind(char *param, t_to_code *f, unsigned char *op, int positio
 				ft_printf("param=%s i on T_IND\n", ansver);
 		return (ansver);
 	}
+	g_error++;
+	ft_printf("ERROR!!!!! in line %d", g_line);
 	return(NULL);
 }
 
@@ -282,6 +291,8 @@ char		*check_t_dir_reg(char *param, t_to_code *f, unsigned char *op, int positio
 				ft_printf("param=%s i on T_REG\n", ansver);
 		return (ansver);
 	}
+		g_error++;
+		ft_printf("ERROR!!!!! in line %d", g_line);
 	return(NULL);
 }
 
@@ -305,6 +316,8 @@ char	*check_t_ind_reg(char *param, t_to_code *f, unsigned char *op, int position
 				ft_printf("param=%s i on T_REG\n", ansver);
 		return (ansver);
 	}
+	g_error++;
+	ft_printf("ERROR!!!!! in line %d", g_line);
 	return(NULL);
 }
 
@@ -313,6 +326,7 @@ char	*check_t_ind_reg_dir(char *param, t_to_code *f, unsigned char *op, int posi
 	int				i;
 	unsigned char	tmp;
 	char			*ansver;
+	int				flag;
 
 	tmp = *op;
 	i = 0;
@@ -334,6 +348,8 @@ char	*check_t_ind_reg_dir(char *param, t_to_code *f, unsigned char *op, int posi
 				ft_printf("param=%s i on T_DIR\n", ansver);
 		return (ansver);
 	}
+	g_error++;
+	ft_printf("ERROR!!!!!????? in line %d", g_line);
 	return(NULL);
 }
 
@@ -349,14 +365,13 @@ int		get_need_f(char *param, int a, t_comand *f, t_to_code *tmp)
 	flag = 0;
 	mask = 0xff;
 	mask = mask << sdvig;
-	ft_printf("||%#x|%#04x|%d||\n", mask, ((f->args & (mask)) >> sdvig), a);
 	//ft_printf("|%#x|", f->args);
 	if (((f->args & mask) >> sdvig) == 0x01)  /* T_DIR*/
-		ft_printf("T_DIR arg=%s", check_t_dir(param, tmp, &op, a));
+		ft_printf("param T_DIR arg=%s\n", check_t_dir(param, tmp, &op, a));
 	else if (((f->args & mask) >> sdvig) == 0x02)
-		ft_printf("T_IND arg=%s", check_t_ind(param, tmp, &op, a));
+		ft_printf("param T_IND arg=%s\n", check_t_ind(param, tmp, &op, a));
 	else if (((f->args & mask) >> sdvig) == 0x03)
-		ft_printf("T_REG arg=%s\n", check_t_reg(param, tmp, &op, a));
+		ft_printf("param T_REG arg=%s\n", check_t_reg(param, tmp, &op, a));
 	else if (((f->args & mask) >> sdvig) == 0x12)
 		check_t_dir_ind(param, tmp, &op, a);
 	else if (((f->args & mask) >> sdvig) == 0x13)
@@ -365,7 +380,6 @@ int		get_need_f(char *param, int a, t_comand *f, t_to_code *tmp)
 		check_t_ind_reg(param, tmp, &op, a);
 	else if (((f->args & mask) >> sdvig) == 0xff)
 		check_t_ind_reg_dir(param, tmp, &op, a);
-		ft_printf("op = %d\n", op);
 	return (flag);
 }
 
@@ -384,12 +398,14 @@ void	f_full_check(char *line, t_comand *f, t_to_code *tmp)
 		ft_printf("|%s| ", args[i]);
 		i++;
 	}
+	ft_printf("\n");
 	i = 0 ;
 	while(args[i] != NULL)
 		i++;
 	if (i != f->count)
 	{
-		ft_printf("ERROR in line %d nr to kolo4estvo argymentov\n",g_line);
+		g_error++;
+		ft_printf("ERROR in line %d ne to kolo4estvo argymentov\n",g_line);
 		return ;
 	}
 	i = 0;
@@ -431,7 +447,10 @@ void	check_f(t_to_code *tmp, char *line, int a)
 			f_full_check(&line[ft_strlen(tmp2)], f_list[i - 1], tmp);
 		}
 		if (i == 16 && j == 0)
+		{
+			g_error++;
 			ft_printf("error in f in line%d\n", g_line);
+		}
 	}
 }
 
@@ -455,6 +474,11 @@ void	pars_two(char *line, t_main *main_asm, t_comand *all_comand, int a)
 		}
 		while(line[i + j] != ' ' && line[i + j] != '\t' && line[i + j] != '\0')
 			j++;
+		if (line[i] == '.')
+		{
+			ft_printf("error in line %d", g_line);
+			g_error++;
+		}
 		if (j > 0 && line[i + j - 1] == ':')
 		{
 			tmp = (t_to_code *)ft_memalloc(sizeof(t_to_code));
