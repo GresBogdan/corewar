@@ -151,6 +151,11 @@ void	check_name_comment(char *line, t_main *main_asm)
 		}
 		//ft_printf("i=%d j=%d", i, j);
 	}
+	else
+	{
+		ft_printf("!!!ERROR in %d\n", g_line);
+		g_error++;
+	}
 	free(line);
 }
 int		check_sp(char *line)
@@ -183,9 +188,14 @@ void	start_pars(int fd)
 			free(line);
 	}
 	ft_printf("name=|%s| comment = |%s|", main_asm->name, main_asm->comment);
-	free(main_asm->name);
-	free(main_asm->comment);
-	free(main_asm);
+	if(main_asm->name == NULL || main_asm->comment == NULL)
+	{
+		if (main_asm->name == NULL)
+			ft_printf("Oops, no name (\n");
+		else
+			ft_printf("Oops, no comment(\n");
+		g_error++;
+	}
 }
 
 int main(int ac, char **av)
@@ -201,13 +211,13 @@ int main(int ac, char **av)
 		return (0);
 	}
 	fd = open(av[1], O_RDONLY);
-	if (fd < 0 || ft_strstr(av[1], ".s") == NULL || ft_strlen(av[1]) < 3)
+	if (fd < 0 || ft_strlen(av[1]) < 3 || av[1][ft_strlen(av[1]) - 1] != 's' || av[1][ft_strlen(av[1]) - 2] != '.' || ft_strlen(av[1]) < 3)
 	{
 		ft_printf("wrong file\n");
 		return (0);
 	}
 	start_pars(fd);
-	//system("leaks a.out");
+	//system("leaks my_asm");
 	if (g_error > 0)
 	{
 		ft_printf("\nOops, you hawe %d errors\n", g_error);

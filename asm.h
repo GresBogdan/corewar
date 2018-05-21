@@ -70,6 +70,7 @@ typedef struct			s_to_code
 	unsigned char		count;
 	unsigned int		args[4];
 	unsigned char		op_est;
+	unsigned int		op_f;
 	struct s_to_code	*next;
 	struct s_to_code	*prvs;
 }						t_to_code;

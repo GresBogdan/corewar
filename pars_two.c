@@ -193,12 +193,18 @@ int		check_all_isdigit(char *param)
 
 char		*check_t_reg(char *param, t_to_code *f, unsigned char *op, char position)
 {
+	unsigned int	mask;
+	int				sdvig;
+
+	mask = 0xff;
+	sdvig = (8 * (3 - position));
+	mask = mask << sdvig;
 	if (ft_strlen(param) >= 2 && ft_strlen(param) <= 3 && param[0] == 'r' && ft_isdigit(param[1]) && (ft_isdigit(param[2]) || param[2] == '\0'))
 	{
 		*op = *op | (1 << (2 * (3 - position + 1)));
 		return (param);
 	}
-	else if (f->op_est == 0)
+	else if (((f->op_f & mask) >> sdvig) <= 3)
 	{
 		g_error++;
 		ft_printf("ERROR in check_t_reg s =|%s|line=%d\n",param, g_line);
@@ -208,12 +214,18 @@ char		*check_t_reg(char *param, t_to_code *f, unsigned char *op, char position)
 
 char		*check_t_ind(char *param, t_to_code *f, unsigned char *op, char position)
 {
+	unsigned int	mask;
+	int				sdvig;
+
+	mask = 0xff;
+	sdvig = (8 * (3 - position));
+	mask = mask << sdvig;
 	if (param != NULL && (check_all_isdigit(param) == 0 || (check_all_isdigit(param) == 1 && ft_strlen(param) > 1 && param[0] == '-')))
 	{
 		*op = *op | (3 << (2 * (3 - position + 1)));
 		return (param);
 	}
-	else if (f->op_est == 0)
+	else if (((f->op_f & mask) >> sdvig) <= 3)
 	{
 		g_error++;
 		ft_printf("ERROR in check_t_ind line %d\n", g_line);
@@ -223,9 +235,12 @@ char		*check_t_ind(char *param, t_to_code *f, unsigned char *op, char position)
 
 char		*check_t_dir(char *param, t_to_code *f, unsigned char *op, int position)
 {
-	int		i;
+	unsigned int	mask;
+	int				sdvig;
 
-	i = 0;
+	mask = 0xff;
+	sdvig = (8 * (3 - position));
+	mask = mask << sdvig;
 	if (param != NULL && ft_strlen(param) >= 2 && param[0] == '%' &&
 		(check_all_isdigit(&param[1]) == 0 || (ft_strlen(param) >= 3 && check_all_isdigit(&param[1]) == 1 && param[1] == '-')))
 	{
@@ -238,7 +253,7 @@ char		*check_t_dir(char *param, t_to_code *f, unsigned char *op, int position)
 		f->arg_lbl.mas[position - 1] = ft_strdup(param);
 		return(param);
 	}
-	else if (f->op_est == 0)
+	else if (((f->op_f & mask) >> sdvig) <= 3)
 	{
 		g_error++;
 		ft_printf("!!!!ERROR s= |%s| in check_t_dir line %d, len = %d a[0] =|%c| a[1] = |%c|\n", param,g_line, ft_strlen(param), param[0], param[1]);
@@ -367,11 +382,11 @@ int		get_need_f(char *param, int a, t_comand *f, t_to_code *tmp)
 	mask = mask << sdvig;
 	//ft_printf("|%#x|", f->args);
 	if (((f->args & mask) >> sdvig) == 0x01)  /* T_DIR*/
-		ft_printf("param T_DIR arg=%s\n", check_t_dir(param, tmp, &op, a));
+		check_t_dir(param, tmp, &op, a);
 	else if (((f->args & mask) >> sdvig) == 0x02)
-		ft_printf("param T_IND arg=%s\n", check_t_ind(param, tmp, &op, a));
+		check_t_ind(param, tmp, &op, a);
 	else if (((f->args & mask) >> sdvig) == 0x03)
-		ft_printf("param T_REG arg=%s\n", check_t_reg(param, tmp, &op, a));
+		check_t_reg(param, tmp, &op, a);
 	else if (((f->args & mask) >> sdvig) == 0x12)
 		check_t_dir_ind(param, tmp, &op, a);
 	else if (((f->args & mask) >> sdvig) == 0x13)
@@ -444,6 +459,7 @@ void	check_f(t_to_code *tmp, char *line, int a)
 			tmp = (t_to_code *)ft_memalloc(sizeof(t_to_code));
 			tmp->first_b = i;
 			tmp->op_est = f_list[i - 1]->op_est;
+			tmp->op_f = f_list[i - 1]->args;
 			f_full_check(&line[ft_strlen(tmp2)], f_list[i - 1], tmp);
 		}
 		if (i == 16 && j == 0)
