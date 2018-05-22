@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	return_1(const char *a)
+static unsigned int	return_1(const char *a)
 {
 	short			result;
 	int				z;
@@ -18,18 +18,19 @@ static int	return_1(const char *a)
 	result = 0;
 	z = 1;
 	if (*a == '-')
+	{
 		z = -1;
-	if (*a == '-' || *a == '+')
 		a++;
+	}
 	while (*a >= '0' && *a <= '9')
 	{
 		result = (result * 10) + (*a - '0');
 		a++;
 	}
-	return ((int)(result * z));
+	return ((unsigned short)(result * z));
 }
 
-static int	return_2(const char *a)
+static unsigned int	return_2(const char *a)
 {
 	int				result;
 	int				z;
@@ -45,10 +46,10 @@ static int	return_2(const char *a)
 		result = (result * 10) + (*a - '0');
 		a++;
 	}
-	return ((int)(result * z));
+	return ((unsigned int)(result * z));
 }
 
-int		ft_atoi_cw(const char *a , char size)
+unsigned int		ft_atoi_cw(const char *a , char size)
 {
 	if (size == 2)
 		return(return_1(a));
@@ -56,6 +57,6 @@ int		ft_atoi_cw(const char *a , char size)
 		return(return_2(a));
 
 	
-	return (0);
+	return (-1);
 }
 

@@ -18,7 +18,8 @@
 
 int		g_line;
 int		g_error;
-
+int		g_cmnd_i;
+int		g_cmnd_len;
 #define LIVE "live"
 #define LD "ld"
 #define ST "st"
@@ -55,6 +56,7 @@ typedef struct		s_comand
 	unsigned char	op_est;
 	char			lz;
 	char			count;
+	int				cmnd_l;
 	unsigned int	args; /* args[0] & 0xff binary_code last & 0xff00 binary_code second &0xff0000 first. 0x00 = no, 0x01 = T_DIR, 0x02 = T_IND, 0x03 = T_REG, 0x12 = T_DIR | T_IND, 0x13 = T_DIR | T_REG, 0x23 = T_IND | T_REG, 0xFF = T_IND | T_REG | T_DIR  */
 
 }					t_comand;
@@ -68,16 +70,19 @@ typedef struct			s_to_code
 	unsigned char		op;
 	char				lz;
 	unsigned char		count;
-	unsigned int		args[4];
+	char				*ar[4];
+	unsigned int		args[3];
 	unsigned char		op_est;
 	unsigned int		op_f;
+	unsigned char		cmnd_len;
+	unsigned int		cmnd_i;
+	int					cmnd_l;
 	struct s_to_code	*next;
-	struct s_to_code	*prvs;
 }						t_to_code;
 
 t_to_code			*comand_list;
 void				pars_two(char *line, t_main *main_asm, t_comand *all_comand, int a);
-
+t_comand	**make_f_list(void);
 t_to_code			*g_cmndList;
 
 

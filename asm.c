@@ -40,7 +40,6 @@ char	*get_name(char *line, int flag)
 		}
 		i= i + 5;
 		i = i +skip_space(&line[i]);
-		//ft_printf("%s\n", &line[i]);
 		if (line[i] != '\"')
 		{
 			g_error++;
@@ -70,7 +69,6 @@ char	*get_name(char *line, int flag)
 		}
 		i= i + 8;
 		i = i +skip_space(&line[i]);
-		//ft_printf("%s\n", &line[i]);
 		if (line[i] != '\"')
 		{
 			g_error++;
@@ -98,7 +96,6 @@ char	*get_name(char *line, int flag)
 	{
 		name[j] = line[i + j];
 	}
-	//ft_printf("|%i||%s\n",ft_strlen(name), name);
 	return (name);
 }
 
@@ -114,28 +111,23 @@ void	check_name_comment(char *line, t_main *main_asm)
 	k = 0;
 	if ((i = ft_strstr_cw(line, ".name")) != -1 || (j = ft_strstr_cw(line, ".comment")) != -1)
 	{
-		//ft_printf("da1 i=%i j=%i   s=|%s|\n", i, j, line);
 		if (i != -1)
 		{
-			//ft_printf("da2\n");
 			k = skip_space(line);
 			if ((main_asm->flag & 1) != 0 || (ft_strstr_cw(&line[k], ".name") != 0))
 			{
-				//ft_printf("da4\n");
 				g_error++;
 				ft_printf("double name, chek line %d", g_line);
 				exit(0);
 			}
 			else
 			{
-				//ft_printf("da6\n");
 				main_asm->flag = main_asm->flag | 1;
 				main_asm->name = get_name(line, 1);
 			}
 		}
 		if (j != -1)
 		{
-			//ft_printf("da3 j = %d  |%s|\n", j, ft_strstr(line, ".comment"));
 			k = skip_space(line);
 			if ((main_asm->flag & 2) != 0 || (ft_strstr_cw(&line[k], ".comment") != 0))
 			{
@@ -149,7 +141,6 @@ void	check_name_comment(char *line, t_main *main_asm)
 				main_asm->comment = get_name(line, 2);
 			}
 		}
-		//ft_printf("i=%d j=%d", i, j);
 	}
 	else
 	{
@@ -169,6 +160,20 @@ int		check_sp(char *line)
 		return (1);
 	return (0);
 }
+
+void	do_whot_need(char *line)
+{
+	int		i;
+
+	i = 0;
+	if (ft_strchr(line, '#') != NULL)
+	{
+		while(line[i] != '#')
+			i++;
+		line[i] = '\0';
+	}
+}
+
 void	start_pars(int fd)
 {
 	char		*line;
@@ -179,6 +184,7 @@ void	start_pars(int fd)
 	all_comand = (t_comand *)ft_memalloc(sizeof(t_comand));
 	while (get_next_line(fd, &line))
 	{
+		do_whot_need(line);
 		g_line++;
 		if (line[0] != '#' && ft_strlen(line) != 0 && check_sp(line) != 1 && ((main_asm->flag & 3) != 3) )
 			check_name_comment(line, main_asm);
@@ -198,13 +204,137 @@ void	start_pars(int fd)
 	}
 }
 
+void	count_cmnd_len(t_comand **f)
+{
+	t_to_code		*tmp;
+	int				i;
+	unsigned char	mask;
+	char			a[4];
+
+	f = make_f_list();
+	a[0] = 0;
+	a[1] = 1;
+	a[3] = 2;
+	mask = 0x3;
+	i = 1;
+	tmp = g_cmndList;
+	while (tmp)
+	{
+		i = 1;
+		if (tmp->first_b != 0 && f[tmp->first_b - 1]->cmnd_l == 0)
+		{
+			a[2] = f[tmp->first_b - 1]->lz;
+			i = i + f[tmp->first_b - 1]->op + a[(tmp->op & (mask << 6)) >> 6] + a[(tmp->op & (mask << 4)) >> 4] + a[(tmp->op & (mask << 2)) >> 2];
+			tmp->cmnd_l = i;
+			tmp->cmnd_i = g_cmnd_len;
+			g_cmnd_len += i;
+		}
+		else if (tmp->first_b != 0)
+		{
+			tmp->cmnd_i = g_cmnd_len;
+			tmp->cmnd_l = f[tmp->first_b - 1]->cmnd_l;
+			g_cmnd_len += f[tmp->first_b - 1]->cmnd_l;
+		}
+		else
+		{
+			tmp->cmnd_i = g_cmnd_len;
+			tmp->cmnd_l = -1;
+		}
+		tmp = tmp->next;
+	}
+}
+
+unsigned int	magic_with_link(t_to_code *tmp, char *a)
+{
+	t_to_code	*tmp2;
+
+	tmp2 = g_cmndList;
+	while (tmp2)
+	{
+		if (tmp2->first_b == 0 && ft_strnequ(tmp2->lbl, &a[2], ft_strlen(tmp2->lbl) - 1))
+		{
+			ft_printf("do linka %s rastojnie = %d      %d    %d   \n", tmp2->lbl,tmp2->cmnd_i - tmp->cmnd_i, tmp2->cmnd_i, tmp->cmnd_i );
+			return ((unsigned int)(tmp2->cmnd_i - tmp->cmnd_i));
+		}
+		tmp2 = tmp2->next;
+	}
+	ft_printf("Oops, there is no such label==%s\n", a);
+	g_error++;
+	return ('(');
+}
+
+unsigned int	convert_T_REG(t_to_code *tmp, char *a)
+{
+	unsigned int	res;
+
+	if (ft_strlen(a) > 1 && ft_strlen(a) < 4)
+	{
+		res = -1;
+		res = ft_atoi(&a[1]);
+		return (res);
+	}
+	ft_printf("Oops, youre T_REG-|%a| feels bad\n");
+	g_error++;
+	return (-1);
+}
+
+unsigned int	convert_T_DIR(t_to_code *tmp, char *a)
+{
+	unsigned int	res;
+	res = 0;
+	if (a[1] == ':')
+		return(magic_with_link(tmp, a));
+	else
+		res = ft_atoi_cw(&a[1], tmp->lz);
+	return (res);
+}
+
+unsigned int	convert_T_IND(t_to_code *tmp, char *a)
+{
+	unsigned int	res;
+	res = 0;
+	res = ft_atoi_cw(a, 2);
+	return(res);
+}
+
+void	zaebali_nazv(t_to_code *tmp, char i, char flag)
+{
+	ft_printf("%d flag \n", flag);
+	if (flag == 1)
+		tmp->args[i] = convert_T_REG(tmp, tmp->ar[i]);
+	else if (flag == 2)
+		tmp->args[i] = convert_T_DIR(tmp, tmp->ar[i]);		
+	else if (flag == 3)
+		tmp->args[i] = convert_T_IND(tmp, tmp->ar[i]);
+	else
+	ft_printf("4toto poshlo ne tak(\n");
+}
+
+void	convert_args(void)
+{
+	t_to_code	*tmp;
+	char		i;
+
+	i = -1;
+	tmp = g_cmndList;
+	while(tmp)
+	{
+		ft_printf("ny%d\n", tmp->count);
+		while(++i < tmp->count)
+			zaebali_nazv(tmp, i, (tmp->op & (3 << (2 * (3 - i)))) >>  (2 * (3 - i)));
+		i = -1;
+		tmp = tmp->next;
+	}
+}
+
 int main(int ac, char **av)
 {
 	int		fd;
-
+	t_to_code	*tmp;
 	g_line = 0;
 	g_error = 0;
 	g_cmndList = NULL;
+	g_cmnd_len = 0;
 	if (ac < 2)
 	{
 		ft_printf("no argument\n");
@@ -218,11 +348,20 @@ int main(int ac, char **av)
 	}
 	start_pars(fd);
 	//system("leaks my_asm");
+	ft_printf("\n\n");
+	count_cmnd_len(NULL);
+	convert_args();
+	tmp = g_cmndList;
+	while(tmp)
+	{
+		ft_printf("tmp->name=|%s|%d| op=|%u| arg1 = |%d| arg2 = |%d| arg3= |%d| cmnd_len = %d cmnd_i = %d\n\n",tmp->f_name,tmp->first_b, tmp->op,tmp->args[0], tmp->args[1], tmp->args[2], tmp->cmnd_l, tmp->cmnd_i);
+		tmp = tmp->next;
+	}
 	if (g_error > 0)
 	{
 		ft_printf("\nOops, you hawe %d errors\n", g_error);
 	}
 	else
-		ft_printf("\nvse zbs!\n");
+		ft_printf("\nvse zbs cmndLen=%d!\n", g_cmnd_len);
 	return (0);
 }

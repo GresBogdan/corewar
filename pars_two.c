@@ -14,10 +14,18 @@
 
 void		add_to_cmndList(t_to_code *a)
 {
-	a->next = g_cmndList;
-	if (g_cmndList != NULL)
-		g_cmndList->prvs = a;
-	g_cmndList = a;
+	t_to_code	*tmp;
+
+	tmp = NULL;
+	if(g_cmndList == NULL)
+		g_cmndList = a;
+	else
+	{
+		tmp = g_cmndList;
+		while(tmp->next != NULL)
+			tmp = tmp->next;
+		tmp->next = a;
+	}
 }
 
 char		*ft_copy_n(char *src, int n)
@@ -50,6 +58,7 @@ t_comand	**make_f_list(void)
 	a[0]->args = 0x010000;
 	a[0]->count = 1;
 	a[0]->op_est = 0;
+	a[0]->cmnd_l = 5;
 
 	a[1] = (t_comand *)ft_memalloc(sizeof(t_comand));
 	a[1]->name = ft_strdup(LD);
@@ -58,6 +67,7 @@ t_comand	**make_f_list(void)
 	a[1]->args = 0x120300;
 	a[1]->count = 2;
 	a[1]->op_est = 1;
+	a[0]->cmnd_l = 0;
 
 	a[2] = (t_comand *)ft_memalloc(sizeof(t_comand));
 	a[2]->name = ft_strdup(ST);
@@ -66,6 +76,7 @@ t_comand	**make_f_list(void)
 	a[2]->args = 0x030000;
 	a[2]->count = 2;
 	a[2]->op_est = 1;
+	a[2]->cmnd_l = 0;
 
 	a[3] = (t_comand *)ft_memalloc(sizeof(t_comand));
 	a[3]->name = ft_strdup(ADD);
@@ -74,6 +85,7 @@ t_comand	**make_f_list(void)
 	a[3]->args = 0x030303;
 	a[3]->count = 3;
 	a[3]->op_est = 1;
+	a[3]->cmnd_l = 5;
 
 	a[4] = (t_comand *)ft_memalloc(sizeof(t_comand));
 	a[4]->name = ft_strdup(SUB);
@@ -82,6 +94,7 @@ t_comand	**make_f_list(void)
 	a[4]->args = 0x030303;
 	a[4]->count = 3;
 	a[4]->op_est = 1;
+	a[4]->cmnd_l = 5;
 
 	a[5] = (t_comand *)ft_memalloc(sizeof(t_comand));
 	a[5]->name = ft_strdup(AND);
@@ -90,6 +103,7 @@ t_comand	**make_f_list(void)
 	a[5]->args = 0xffff03;
 	a[5]->count = 3;
 	a[5]->op_est = 1;
+	a[5]->cmnd_l = 0;
 
 	a[6] = (t_comand *)ft_memalloc(sizeof(t_comand));
 	a[6]->name = ft_strdup(OR);
@@ -98,6 +112,7 @@ t_comand	**make_f_list(void)
 	a[6]->args = 0xffff03;
 	a[6]->count = 3;
 	a[6]->op_est = 1;
+	a[6]->cmnd_l = 0;
 
 	a[7] = (t_comand *)ft_memalloc(sizeof(t_comand));
 	a[7]->name = ft_strdup(XOR);
@@ -106,6 +121,7 @@ t_comand	**make_f_list(void)
 	a[7]->args = 0xffff03;
 	a[7]->count = 3;
 	a[7]->op_est = 1;
+	a[7]->cmnd_l = 0;
 
 	a[8] = (t_comand *)ft_memalloc(sizeof(t_comand));
 	a[8]->name = ft_strdup(ZJMP);
@@ -114,6 +130,7 @@ t_comand	**make_f_list(void)
 	a[8]->args = 0x010000;
 	a[8]->count = 1;
 	a[8]->op_est = 0;
+	a[8]->cmnd_l = 3;
 
 	a[9] = (t_comand *)ft_memalloc(sizeof(t_comand));
 	a[9]->name = ft_strdup(LDI);
@@ -122,6 +139,7 @@ t_comand	**make_f_list(void)
 	a[9]->args = 0xffff03;
 	a[9]->count = 3;
 	a[9]->op_est = 1;
+	a[9]->cmnd_l = 0;
 
 	a[10] = (t_comand *)ft_memalloc(sizeof(t_comand));
 	a[10]->name = ft_strdup(STI);
@@ -130,6 +148,7 @@ t_comand	**make_f_list(void)
 	a[10]->args = 0x03ff13;
 	a[10]->count = 3;
 	a[10]->op_est = 1;
+	a[10]->cmnd_l = 0;
 
 	a[11] = (t_comand *)ft_memalloc(sizeof(t_comand));
 	a[11]->name = ft_strdup(FORK);
@@ -138,6 +157,7 @@ t_comand	**make_f_list(void)
 	a[11]->args = 0x010000;
 	a[11]->count = 1;
 	a[11]->op_est = 0;
+	a[11]->cmnd_l = 3;
 
 	a[12] = (t_comand *)ft_memalloc(sizeof(t_comand));
 	a[12]->name = ft_strdup(LLD);
@@ -146,6 +166,7 @@ t_comand	**make_f_list(void)
 	a[12]->args = 0x120300;
 	a[12]->count = 2;
 	a[12]->op_est = 1;
+	a[12]->cmnd_l = 0;
 
 	a[13] = (t_comand *)ft_memalloc(sizeof(t_comand));
 	a[13]->name = ft_strdup(LLDI);
@@ -154,6 +175,7 @@ t_comand	**make_f_list(void)
 	a[13]->args = 0xff1301;
 	a[13]->count = 3;
 	a[13]->op_est = 1;
+	a[13]->cmnd_l = 0;
 
 	a[14] = (t_comand *)ft_memalloc(sizeof(t_comand));
 	a[14]->name = ft_strdup(LFORK);
@@ -162,6 +184,7 @@ t_comand	**make_f_list(void)
 	a[14]->args = 0x010000;
 	a[14]->count = 1;
 	a[14]->op_est = 0;
+	a[14]->cmnd_l = 3;
 
 	a[15] = (t_comand *)ft_memalloc(sizeof(t_comand));
 	a[15]->name = ft_strdup(AFF);
@@ -170,6 +193,7 @@ t_comand	**make_f_list(void)
 	a[15]->args = 0x030000;
 	a[15]->count = 1;
 	a[15]->op_est = 1;
+	a[15]->cmnd_l = 3;
 
 	a[16] = NULL;
 	return (a);
@@ -380,21 +404,21 @@ int		get_need_f(char *param, int a, t_comand *f, t_to_code *tmp)
 	flag = 0;
 	mask = 0xff;
 	mask = mask << sdvig;
-	//ft_printf("|%#x|", f->args);
 	if (((f->args & mask) >> sdvig) == 0x01)  /* T_DIR*/
-		check_t_dir(param, tmp, &op, a);
+		tmp->ar[a - 1]=check_t_dir(param, tmp, &op, a);
 	else if (((f->args & mask) >> sdvig) == 0x02)
-		check_t_ind(param, tmp, &op, a);
+		tmp->ar[a - 1]=check_t_ind(param, tmp, &op, a);
 	else if (((f->args & mask) >> sdvig) == 0x03)
-		check_t_reg(param, tmp, &op, a);
+		tmp->ar[a - 1]=check_t_reg(param, tmp, &op, a);
 	else if (((f->args & mask) >> sdvig) == 0x12)
-		check_t_dir_ind(param, tmp, &op, a);
+		tmp->ar[a - 1]=check_t_dir_ind(param, tmp, &op, a);
 	else if (((f->args & mask) >> sdvig) == 0x13)
-		check_t_dir_reg(param, tmp, &op, a);
+		tmp->ar[a - 1]=check_t_dir_reg(param, tmp, &op, a);
 	else if (((f->args & mask) >> sdvig) == 0x23)
-		check_t_ind_reg(param, tmp, &op, a);
+		tmp->ar[a - 1]=check_t_ind_reg(param, tmp, &op, a);
 	else if (((f->args & mask) >> sdvig) == 0xff)
-		check_t_ind_reg_dir(param, tmp, &op, a);
+		tmp->ar[a - 1]=check_t_ind_reg_dir(param, tmp, &op, a);
+	tmp->op = tmp->op | op;
 	return (flag);
 }
 
@@ -460,7 +484,9 @@ void	check_f(t_to_code *tmp, char *line, int a)
 			tmp->first_b = i;
 			tmp->op_est = f_list[i - 1]->op_est;
 			tmp->op_f = f_list[i - 1]->args;
+			tmp->count = f_list[i - 1]->count;
 			f_full_check(&line[ft_strlen(tmp2)], f_list[i - 1], tmp);
+			add_to_cmndList(tmp);
 		}
 		if (i == 16 && j == 0)
 		{
@@ -514,24 +540,4 @@ void	pars_two(char *line, t_main *main_asm, t_comand *all_comand, int a)
 			return ;
 		check_f(tmp, &line[i], a);
 	ft_printf("\n");
-	// par = ft_split_cw(line);
-	// while(par[i] != NULL)
-	// {
-	// 	if (i == 0)
-	// 	{
-	// 		if (par[i][ft_strlen(par[i]) - 1] == ':')
-	// 		{
-	// 			i++;
-	// 			flag = 1;
-	// 			tmp = (t_to_code *)ft_memalloc(sizeof(t_to_code));
-	// 			tmp->lbl = ft_strdup(par[i - 1]);
-	// 			ft_printf("label v %i\n", i);
-	// 		}
-	// 	}
-	// 	if (i == 0 || (i == 1 && flag == 1))
-	// 		check_f(par[i], &par[i], tmp);
-	// 	//ft_printf("%s ",par[i]);
-	// 	i++;
-	// }
-	//ft_printf("\nf_line = %d i = %d\n", g_line, i);
 }
