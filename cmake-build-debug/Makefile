@@ -150,6 +150,60 @@ asm.c.s:
 	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/asm.c.s
 .PHONY : asm.c.s
 
+ft_atoi_cw.o: ft_atoi_cw.c.o
+
+.PHONY : ft_atoi_cw.o
+
+# target to build an object file
+ft_atoi_cw.c.o:
+	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/ft_atoi_cw.c.o
+.PHONY : ft_atoi_cw.c.o
+
+ft_atoi_cw.i: ft_atoi_cw.c.i
+
+.PHONY : ft_atoi_cw.i
+
+# target to preprocess a source file
+ft_atoi_cw.c.i:
+	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/ft_atoi_cw.c.i
+.PHONY : ft_atoi_cw.c.i
+
+ft_atoi_cw.s: ft_atoi_cw.c.s
+
+.PHONY : ft_atoi_cw.s
+
+# target to generate assembly for a file
+ft_atoi_cw.c.s:
+	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/ft_atoi_cw.c.s
+.PHONY : ft_atoi_cw.c.s
+
+ft_split_cw.o: ft_split_cw.c.o
+
+.PHONY : ft_split_cw.o
+
+# target to build an object file
+ft_split_cw.c.o:
+	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/ft_split_cw.c.o
+.PHONY : ft_split_cw.c.o
+
+ft_split_cw.i: ft_split_cw.c.i
+
+.PHONY : ft_split_cw.i
+
+# target to preprocess a source file
+ft_split_cw.c.i:
+	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/ft_split_cw.c.i
+.PHONY : ft_split_cw.c.i
+
+ft_split_cw.s: ft_split_cw.c.s
+
+.PHONY : ft_split_cw.s
+
+# target to generate assembly for a file
+ft_split_cw.c.s:
+	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/ft_split_cw.c.s
+.PHONY : ft_split_cw.c.s
+
 ft_strstr_cw.o: ft_strstr_cw.c.o
 
 .PHONY : ft_strstr_cw.o
@@ -2013,6 +2067,33 @@ libftprintf/ft_strstr.c.s:
 	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/libftprintf/ft_strstr.c.s
 .PHONY : libftprintf/ft_strstr.c.s
 
+libftprintf/ft_strstr_cw.o: libftprintf/ft_strstr_cw.c.o
+
+.PHONY : libftprintf/ft_strstr_cw.o
+
+# target to build an object file
+libftprintf/ft_strstr_cw.c.o:
+	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/libftprintf/ft_strstr_cw.c.o
+.PHONY : libftprintf/ft_strstr_cw.c.o
+
+libftprintf/ft_strstr_cw.i: libftprintf/ft_strstr_cw.c.i
+
+.PHONY : libftprintf/ft_strstr_cw.i
+
+# target to preprocess a source file
+libftprintf/ft_strstr_cw.c.i:
+	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/libftprintf/ft_strstr_cw.c.i
+.PHONY : libftprintf/ft_strstr_cw.c.i
+
+libftprintf/ft_strstr_cw.s: libftprintf/ft_strstr_cw.c.s
+
+.PHONY : libftprintf/ft_strstr_cw.s
+
+# target to generate assembly for a file
+libftprintf/ft_strstr_cw.c.s:
+	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/libftprintf/ft_strstr_cw.c.s
+.PHONY : libftprintf/ft_strstr_cw.c.s
+
 libftprintf/ft_strsub.o: libftprintf/ft_strsub.c.o
 
 .PHONY : libftprintf/ft_strsub.o
@@ -2066,6 +2147,33 @@ libftprintf/ft_strtrim.s: libftprintf/ft_strtrim.c.s
 libftprintf/ft_strtrim.c.s:
 	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/libftprintf/ft_strtrim.c.s
 .PHONY : libftprintf/ft_strtrim.c.s
+
+libftprintf/ft_strtrim_cw.o: libftprintf/ft_strtrim_cw.c.o
+
+.PHONY : libftprintf/ft_strtrim_cw.o
+
+# target to build an object file
+libftprintf/ft_strtrim_cw.c.o:
+	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/libftprintf/ft_strtrim_cw.c.o
+.PHONY : libftprintf/ft_strtrim_cw.c.o
+
+libftprintf/ft_strtrim_cw.i: libftprintf/ft_strtrim_cw.c.i
+
+.PHONY : libftprintf/ft_strtrim_cw.i
+
+# target to preprocess a source file
+libftprintf/ft_strtrim_cw.c.i:
+	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/libftprintf/ft_strtrim_cw.c.i
+.PHONY : libftprintf/ft_strtrim_cw.c.i
+
+libftprintf/ft_strtrim_cw.s: libftprintf/ft_strtrim_cw.c.s
+
+.PHONY : libftprintf/ft_strtrim_cw.s
+
+# target to generate assembly for a file
+libftprintf/ft_strtrim_cw.c.s:
+	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/libftprintf/ft_strtrim_cw.c.s
+.PHONY : libftprintf/ft_strtrim_cw.c.s
 
 libftprintf/ft_tolower.o: libftprintf/ft_tolower.c.o
 
@@ -2283,32 +2391,32 @@ pars_two.c.s:
 	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/pars_two.c.s
 .PHONY : pars_two.c.s
 
-tst.o: tst.c.o
+to_code.o: to_code.c.o
 
-.PHONY : tst.o
+.PHONY : to_code.o
 
 # target to build an object file
-tst.c.o:
-	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/tst.c.o
-.PHONY : tst.c.o
+to_code.c.o:
+	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/to_code.c.o
+.PHONY : to_code.c.o
 
-tst.i: tst.c.i
+to_code.i: to_code.c.i
 
-.PHONY : tst.i
+.PHONY : to_code.i
 
 # target to preprocess a source file
-tst.c.i:
-	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/tst.c.i
-.PHONY : tst.c.i
+to_code.c.i:
+	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/to_code.c.i
+.PHONY : to_code.c.i
 
-tst.s: tst.c.s
+to_code.s: to_code.c.s
 
-.PHONY : tst.s
+.PHONY : to_code.s
 
 # target to generate assembly for a file
-tst.c.s:
-	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/tst.c.s
-.PHONY : tst.c.s
+to_code.c.s:
+	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/to_code.c.s
+.PHONY : to_code.c.s
 
 # Help Target
 help:
@@ -2322,6 +2430,12 @@ help:
 	@echo "... asm.o"
 	@echo "... asm.i"
 	@echo "... asm.s"
+	@echo "... ft_atoi_cw.o"
+	@echo "... ft_atoi_cw.i"
+	@echo "... ft_atoi_cw.s"
+	@echo "... ft_split_cw.o"
+	@echo "... ft_split_cw.i"
+	@echo "... ft_split_cw.s"
 	@echo "... ft_strstr_cw.o"
 	@echo "... ft_strstr_cw.i"
 	@echo "... ft_strstr_cw.s"
@@ -2529,12 +2643,18 @@ help:
 	@echo "... libftprintf/ft_strstr.o"
 	@echo "... libftprintf/ft_strstr.i"
 	@echo "... libftprintf/ft_strstr.s"
+	@echo "... libftprintf/ft_strstr_cw.o"
+	@echo "... libftprintf/ft_strstr_cw.i"
+	@echo "... libftprintf/ft_strstr_cw.s"
 	@echo "... libftprintf/ft_strsub.o"
 	@echo "... libftprintf/ft_strsub.i"
 	@echo "... libftprintf/ft_strsub.s"
 	@echo "... libftprintf/ft_strtrim.o"
 	@echo "... libftprintf/ft_strtrim.i"
 	@echo "... libftprintf/ft_strtrim.s"
+	@echo "... libftprintf/ft_strtrim_cw.o"
+	@echo "... libftprintf/ft_strtrim_cw.i"
+	@echo "... libftprintf/ft_strtrim_cw.s"
 	@echo "... libftprintf/ft_tolower.o"
 	@echo "... libftprintf/ft_tolower.i"
 	@echo "... libftprintf/ft_tolower.s"
@@ -2559,9 +2679,9 @@ help:
 	@echo "... pars_two.o"
 	@echo "... pars_two.i"
 	@echo "... pars_two.s"
-	@echo "... tst.o"
-	@echo "... tst.i"
-	@echo "... tst.s"
+	@echo "... to_code.o"
+	@echo "... to_code.i"
+	@echo "... to_code.s"
 .PHONY : help
 
 

@@ -11,6 +11,7 @@ add_executable(corewar
         libftprintf/e.c
         libftprintf/f.c
         libftprintf/ft_atoi.c
+        libftprintf/ft_atoi_cw.c
         libftprintf/ft_bzero.c
         libftprintf/ft_foreach.c
         libftprintf/ft_is_negative.c
@@ -46,6 +47,7 @@ add_executable(corewar
         libftprintf/ft_putnbr_fd.c
         libftprintf/ft_putstr.c
         libftprintf/ft_putstr_fd.c
+        libftprintf/ft_split_cw.c
         libftprintf/ft_sqrt.c
         libftprintf/ft_strcat.c
         libftprintf/ft_strchr.c
@@ -71,8 +73,10 @@ add_executable(corewar
         libftprintf/ft_strrchr.c
         libftprintf/ft_strsplit.c
         libftprintf/ft_strstr.c
+        libftprintf/ft_strstr_cw.c
         libftprintf/ft_strsub.c
         libftprintf/ft_strtrim.c
+        libftprintf/ft_strtrim_cw.c
         libftprintf/ft_tolower.c
         libftprintf/ft_toupper.c
         libftprintf/g.c
@@ -82,11 +86,12 @@ add_executable(corewar
         libftprintf/i.c
         libftprintf/j.c
         libftprintf/libft.h
-        libftprintf/ft_split_cw.c
-        libftprintf/ft_atoi_cw.c
         asm.c
         asm.h
+        ft_atoi_cw.c
+        ft_split_cw.c
         ft_strstr_cw.c
         lem_in.h
         pars_two.c
-        tst.c)
+        to_code.c
+        )

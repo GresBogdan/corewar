@@ -7,6 +7,10 @@ CMakeFiles/corewar.dir/asm.c.o
  /Users/bgres/Documents/corewar/libftprintf/ft_printf.h
  /Users/bgres/Documents/corewar/libftprintf/get_next_line.h
  /Users/bgres/Documents/corewar/libftprintf/libft.h
+CMakeFiles/corewar.dir/ft_atoi_cw.c.o
+ /Users/bgres/Documents/corewar/ft_atoi_cw.c
+CMakeFiles/corewar.dir/ft_split_cw.c.o
+ /Users/bgres/Documents/corewar/ft_split_cw.c
 CMakeFiles/corewar.dir/ft_strstr_cw.c.o
  /Users/bgres/Documents/corewar/asm.h
  /Users/bgres/Documents/corewar/ft_strstr_cw.c
@@ -288,12 +292,20 @@ CMakeFiles/corewar.dir/libftprintf/ft_strstr.c.o
  /Users/bgres/Documents/corewar/libftprintf/ft_strstr.c
  /Users/bgres/Documents/corewar/libftprintf/get_next_line.h
  /Users/bgres/Documents/corewar/libftprintf/libft.h
+CMakeFiles/corewar.dir/libftprintf/ft_strstr_cw.c.o
+ /Users/bgres/Documents/corewar/libftprintf/ft_strstr_cw.c
+ /Users/bgres/Documents/corewar/libftprintf/get_next_line.h
+ /Users/bgres/Documents/corewar/libftprintf/libft.h
 CMakeFiles/corewar.dir/libftprintf/ft_strsub.c.o
  /Users/bgres/Documents/corewar/libftprintf/ft_strsub.c
  /Users/bgres/Documents/corewar/libftprintf/get_next_line.h
  /Users/bgres/Documents/corewar/libftprintf/libft.h
 CMakeFiles/corewar.dir/libftprintf/ft_strtrim.c.o
  /Users/bgres/Documents/corewar/libftprintf/ft_strtrim.c
+ /Users/bgres/Documents/corewar/libftprintf/get_next_line.h
+ /Users/bgres/Documents/corewar/libftprintf/libft.h
+CMakeFiles/corewar.dir/libftprintf/ft_strtrim_cw.c.o
+ /Users/bgres/Documents/corewar/libftprintf/ft_strtrim_cw.c
  /Users/bgres/Documents/corewar/libftprintf/get_next_line.h
  /Users/bgres/Documents/corewar/libftprintf/libft.h
 CMakeFiles/corewar.dir/libftprintf/ft_tolower.c.o
@@ -334,5 +346,9 @@ CMakeFiles/corewar.dir/pars_two.c.o
  /Users/bgres/Documents/corewar/libftprintf/get_next_line.h
  /Users/bgres/Documents/corewar/libftprintf/libft.h
  /Users/bgres/Documents/corewar/pars_two.c
-CMakeFiles/corewar.dir/tst.c.o
- /Users/bgres/Documents/corewar/tst.c
+CMakeFiles/corewar.dir/to_code.c.o
+ /Users/bgres/Documents/corewar/asm.h
+ /Users/bgres/Documents/corewar/libftprintf/ft_printf.h
+ /Users/bgres/Documents/corewar/libftprintf/get_next_line.h
+ /Users/bgres/Documents/corewar/libftprintf/libft.h
+ /Users/bgres/Documents/corewar/to_code.c

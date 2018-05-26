@@ -7,6 +7,10 @@ CMakeFiles/corewar.dir/asm.c.o: ../libftprintf/ft_printf.h
 CMakeFiles/corewar.dir/asm.c.o: ../libftprintf/get_next_line.h
 CMakeFiles/corewar.dir/asm.c.o: ../libftprintf/libft.h
 
+CMakeFiles/corewar.dir/ft_atoi_cw.c.o: ../ft_atoi_cw.c
+
+CMakeFiles/corewar.dir/ft_split_cw.c.o: ../ft_split_cw.c
+
 CMakeFiles/corewar.dir/ft_strstr_cw.c.o: ../asm.h
 CMakeFiles/corewar.dir/ft_strstr_cw.c.o: ../ft_strstr_cw.c
 CMakeFiles/corewar.dir/ft_strstr_cw.c.o: ../libftprintf/ft_printf.h
@@ -288,6 +292,10 @@ CMakeFiles/corewar.dir/libftprintf/ft_strstr.c.o: ../libftprintf/ft_strstr.c
 CMakeFiles/corewar.dir/libftprintf/ft_strstr.c.o: ../libftprintf/get_next_line.h
 CMakeFiles/corewar.dir/libftprintf/ft_strstr.c.o: ../libftprintf/libft.h
 
+CMakeFiles/corewar.dir/libftprintf/ft_strstr_cw.c.o: ../libftprintf/ft_strstr_cw.c
+CMakeFiles/corewar.dir/libftprintf/ft_strstr_cw.c.o: ../libftprintf/get_next_line.h
+CMakeFiles/corewar.dir/libftprintf/ft_strstr_cw.c.o: ../libftprintf/libft.h
+
 CMakeFiles/corewar.dir/libftprintf/ft_strsub.c.o: ../libftprintf/ft_strsub.c
 CMakeFiles/corewar.dir/libftprintf/ft_strsub.c.o: ../libftprintf/get_next_line.h
 CMakeFiles/corewar.dir/libftprintf/ft_strsub.c.o: ../libftprintf/libft.h
@@ -295,6 +303,10 @@ CMakeFiles/corewar.dir/libftprintf/ft_strsub.c.o: ../libftprintf/libft.h
 CMakeFiles/corewar.dir/libftprintf/ft_strtrim.c.o: ../libftprintf/ft_strtrim.c
 CMakeFiles/corewar.dir/libftprintf/ft_strtrim.c.o: ../libftprintf/get_next_line.h
 CMakeFiles/corewar.dir/libftprintf/ft_strtrim.c.o: ../libftprintf/libft.h
+
+CMakeFiles/corewar.dir/libftprintf/ft_strtrim_cw.c.o: ../libftprintf/ft_strtrim_cw.c
+CMakeFiles/corewar.dir/libftprintf/ft_strtrim_cw.c.o: ../libftprintf/get_next_line.h
+CMakeFiles/corewar.dir/libftprintf/ft_strtrim_cw.c.o: ../libftprintf/libft.h
 
 CMakeFiles/corewar.dir/libftprintf/ft_tolower.c.o: ../libftprintf/ft_tolower.c
 CMakeFiles/corewar.dir/libftprintf/ft_tolower.c.o: ../libftprintf/get_next_line.h
@@ -334,5 +346,9 @@ CMakeFiles/corewar.dir/pars_two.c.o: ../libftprintf/get_next_line.h
 CMakeFiles/corewar.dir/pars_two.c.o: ../libftprintf/libft.h
 CMakeFiles/corewar.dir/pars_two.c.o: ../pars_two.c
 
-CMakeFiles/corewar.dir/tst.c.o: ../tst.c
+CMakeFiles/corewar.dir/to_code.c.o: ../asm.h
+CMakeFiles/corewar.dir/to_code.c.o: ../libftprintf/ft_printf.h
+CMakeFiles/corewar.dir/to_code.c.o: ../libftprintf/get_next_line.h
+CMakeFiles/corewar.dir/to_code.c.o: ../libftprintf/libft.h
+CMakeFiles/corewar.dir/to_code.c.o: ../to_code.c
 

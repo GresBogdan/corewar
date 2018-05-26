@@ -86,6 +86,12 @@
 		<Unit filename="/Users/bgres/Documents/corewar/asm.h">
 			<Option target="corewar"/>
 		</Unit>
+		<Unit filename="/Users/bgres/Documents/corewar/ft_atoi_cw.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/bgres/Documents/corewar/ft_split_cw.c">
+			<Option target="corewar"/>
+		</Unit>
 		<Unit filename="/Users/bgres/Documents/corewar/ft_strstr_cw.c">
 			<Option target="corewar"/>
 		</Unit>
@@ -299,10 +305,16 @@
 		<Unit filename="/Users/bgres/Documents/corewar/libftprintf/ft_strstr.c">
 			<Option target="corewar"/>
 		</Unit>
+		<Unit filename="/Users/bgres/Documents/corewar/libftprintf/ft_strstr_cw.c">
+			<Option target="corewar"/>
+		</Unit>
 		<Unit filename="/Users/bgres/Documents/corewar/libftprintf/ft_strsub.c">
 			<Option target="corewar"/>
 		</Unit>
 		<Unit filename="/Users/bgres/Documents/corewar/libftprintf/ft_strtrim.c">
+			<Option target="corewar"/>
+		</Unit>
+		<Unit filename="/Users/bgres/Documents/corewar/libftprintf/ft_strtrim_cw.c">
 			<Option target="corewar"/>
 		</Unit>
 		<Unit filename="/Users/bgres/Documents/corewar/libftprintf/ft_tolower.c">
@@ -335,7 +347,7 @@
 		<Unit filename="/Users/bgres/Documents/corewar/pars_two.c">
 			<Option target="corewar"/>
 		</Unit>
-		<Unit filename="/Users/bgres/Documents/corewar/tst.c">
+		<Unit filename="/Users/bgres/Documents/corewar/to_code.c">
 			<Option target="corewar"/>
 		</Unit>
 		<Unit filename="/Users/bgres/Documents/corewar/CMakeLists.txt">

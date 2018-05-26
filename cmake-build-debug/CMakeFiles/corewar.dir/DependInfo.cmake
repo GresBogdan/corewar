@@ -5,6 +5,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
   "/Users/bgres/Documents/corewar/asm.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/asm.c.o"
+  "/Users/bgres/Documents/corewar/ft_atoi_cw.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/ft_atoi_cw.c.o"
+  "/Users/bgres/Documents/corewar/ft_split_cw.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/ft_split_cw.c.o"
   "/Users/bgres/Documents/corewar/ft_strstr_cw.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/ft_strstr_cw.c.o"
   "/Users/bgres/Documents/corewar/libftprintf/a.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/libftprintf/a.c.o"
   "/Users/bgres/Documents/corewar/libftprintf/b.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/libftprintf/b.c.o"
@@ -74,8 +76,10 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/bgres/Documents/corewar/libftprintf/ft_strrchr.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/libftprintf/ft_strrchr.c.o"
   "/Users/bgres/Documents/corewar/libftprintf/ft_strsplit.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/libftprintf/ft_strsplit.c.o"
   "/Users/bgres/Documents/corewar/libftprintf/ft_strstr.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/libftprintf/ft_strstr.c.o"
+  "/Users/bgres/Documents/corewar/libftprintf/ft_strstr_cw.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/libftprintf/ft_strstr_cw.c.o"
   "/Users/bgres/Documents/corewar/libftprintf/ft_strsub.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/libftprintf/ft_strsub.c.o"
   "/Users/bgres/Documents/corewar/libftprintf/ft_strtrim.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/libftprintf/ft_strtrim.c.o"
+  "/Users/bgres/Documents/corewar/libftprintf/ft_strtrim_cw.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/libftprintf/ft_strtrim_cw.c.o"
   "/Users/bgres/Documents/corewar/libftprintf/ft_tolower.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/libftprintf/ft_tolower.c.o"
   "/Users/bgres/Documents/corewar/libftprintf/ft_toupper.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/libftprintf/ft_toupper.c.o"
   "/Users/bgres/Documents/corewar/libftprintf/g.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/libftprintf/g.c.o"
@@ -84,7 +88,7 @@ set(CMAKE_DEPENDS_CHECK_C
   "/Users/bgres/Documents/corewar/libftprintf/i.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/libftprintf/i.c.o"
   "/Users/bgres/Documents/corewar/libftprintf/j.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/libftprintf/j.c.o"
   "/Users/bgres/Documents/corewar/pars_two.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/pars_two.c.o"
-  "/Users/bgres/Documents/corewar/tst.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/tst.c.o"
+  "/Users/bgres/Documents/corewar/to_code.c" "/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles/corewar.dir/to_code.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 

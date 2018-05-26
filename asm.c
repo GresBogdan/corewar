@@ -174,7 +174,7 @@ void	do_whot_need(char *line)
 	}
 }
 
-void	start_pars(int fd)
+t_main	*start_pars(int fd)
 {
 	char		*line;
 	t_main		*main_asm;
@@ -202,6 +202,7 @@ void	start_pars(int fd)
 			ft_printf("Oops, no comment(\n");
 		g_error++;
 	}
+	return (main_asm);
 }
 
 void	count_cmnd_len(t_comand **f)
@@ -251,7 +252,26 @@ unsigned int	magic_with_link(t_to_code *tmp, char *a)
 	tmp2 = g_cmndList;
 	while (tmp2)
 	{
-		if (tmp2->first_b == 0 && ft_strnequ(tmp2->lbl, &a[2], ft_strlen(tmp2->lbl) - 1))
+		if (tmp2->first_b == 0 && ft_strnequ(tmp2->lbl, &a[2], ft_strlen(&a[2])))
+		{
+			ft_printf("do linka %s rastojnie = %d      %d    %d   \n", tmp2->lbl,tmp2->cmnd_i - tmp->cmnd_i, tmp2->cmnd_i, tmp->cmnd_i );
+			return ((unsigned int)(tmp2->cmnd_i - tmp->cmnd_i));
+		}
+		tmp2 = tmp2->next;
+	}
+	ft_printf("Oops, there is no such label==%s\n", a);
+	g_error++;
+	return ('(');
+}
+
+unsigned int	magic_with_link2(t_to_code *tmp, char *a)
+{
+	t_to_code	*tmp2;
+
+	tmp2 = g_cmndList;
+	while (tmp2)
+	{
+		if (tmp2->first_b == 0 && ft_strnequ(tmp2->lbl, &a[1], ft_strlen(&a[2])))
 		{
 			ft_printf("do linka %s rastojnie = %d      %d    %d   \n", tmp2->lbl,tmp2->cmnd_i - tmp->cmnd_i, tmp2->cmnd_i, tmp->cmnd_i );
 			return ((unsigned int)(tmp2->cmnd_i - tmp->cmnd_i));
@@ -293,6 +313,8 @@ unsigned int	convert_T_IND(t_to_code *tmp, char *a)
 {
 	unsigned int	res;
 	res = 0;
+	if (a[0] == ':')
+		return(magic_with_link2(tmp, a));
 	res = ft_atoi_cw(a, 2);
 	return(res);
 }
@@ -307,7 +329,7 @@ void	zaebali_nazv(t_to_code *tmp, char i, char flag)
 	else if (flag == 3)
 		tmp->args[i] = convert_T_IND(tmp, tmp->ar[i]);
 	else
-	ft_printf("4toto poshlo ne tak(\n");
+	ft_printf("4toto poshlo ne tak flag = %d f_b = %d s=%s(\n", flag, tmp->first_b, tmp->ar[i]);
 }
 
 void	convert_args(void)
@@ -326,11 +348,34 @@ void	convert_args(void)
 		tmp = tmp->next;
 	}
 }
+char	*make_name(char *a)
+{
+	int		i;
+	char	*tmp;
 
+	tmp = NULL;
+	i = 0;
+	while(a[i] != '.' && a[i] != '\0')
+		i++;
+	tmp = ft_memalloc(sizeof(char) * (i + 4));
+	i = 0;
+	while(a[i] != '.' && a[i] != '\0')
+	{
+		tmp[i] = a[i];
+		i++;
+	}
+	tmp[i++] = '.';
+	tmp[i++] = 'c';
+	tmp[i++] = 'o';
+	tmp[i++] = 'r';
+	return (tmp);
+
+}
 int main(int ac, char **av)
 {
 	int		fd;
 	t_to_code	*tmp;
+	t_main		*main_asm;
 	g_line = 0;
 	g_error = 0;
 	g_cmndList = NULL;
@@ -346,12 +391,13 @@ int main(int ac, char **av)
 		ft_printf("wrong file\n");
 		return (0);
 	}
-	start_pars(fd);
+	main_asm = start_pars(fd);
 	//system("leaks my_asm");
 	ft_printf("\n\n");
 	count_cmnd_len(NULL);
 	convert_args();
 	tmp = g_cmndList;
+	ft_printf("error = %d\n", g_error);
 	while(tmp)
 	{
 		ft_printf("tmp->name=|%s|%d| op=|%u| arg1 = |%d| arg2 = |%d| arg3= |%d| cmnd_len = %d cmnd_i = %d\n\n",tmp->f_name,tmp->first_b, tmp->op,tmp->args[0], tmp->args[1], tmp->args[2], tmp->cmnd_l, tmp->cmnd_i);
@@ -362,6 +408,9 @@ int main(int ac, char **av)
 		ft_printf("\nOops, you hawe %d errors\n", g_error);
 	}
 	else
+	{
+			start_write(make_name(av[1]), main_asm);
 		ft_printf("\nvse zbs cmndLen=%d!\n", g_cmnd_len);
+	}
 	return (0);
 }

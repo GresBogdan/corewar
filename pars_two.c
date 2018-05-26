@@ -73,7 +73,7 @@ t_comand	**make_f_list(void)
 	a[2]->name = ft_strdup(ST);
 	a[2]->op = 1;
 	a[2]->lz = 4;
-	a[2]->args = 0x030000;
+	a[2]->args = 0x032300;
 	a[2]->count = 2;
 	a[2]->op_est = 1;
 	a[2]->cmnd_l = 0;
@@ -249,6 +249,11 @@ char		*check_t_ind(char *param, t_to_code *f, unsigned char *op, char position)
 		*op = *op | (3 << (2 * (3 - position + 1)));
 		return (param);
 	}
+	else if (param != NULL && param[0] == ':' && ft_strlen(param) > 1)
+	{
+		*op = *op | (3 << (2 * (3 - position + 1)));
+		return (param);
+	}
 	else if (((f->op_f & mask) >> sdvig) <= 3)
 	{
 		g_error++;
@@ -306,7 +311,7 @@ char		*check_t_dir_ind(char *param, t_to_code *f, unsigned char *op, int positio
 		return (ansver);
 	}
 	g_error++;
-	ft_printf("ERROR!!!!! in line %d", g_line);
+	ft_printf("ERROR!!!!! check_t_dir_ind in line %d", g_line);
 	return(NULL);
 }
 
@@ -331,7 +336,7 @@ char		*check_t_dir_reg(char *param, t_to_code *f, unsigned char *op, int positio
 		return (ansver);
 	}
 		g_error++;
-		ft_printf("ERROR!!!!! in line %d", g_line);
+		ft_printf("ERROR!!!!!  check_t_dir_reg in line %d", g_line);
 	return(NULL);
 }
 
@@ -356,7 +361,7 @@ char	*check_t_ind_reg(char *param, t_to_code *f, unsigned char *op, int position
 		return (ansver);
 	}
 	g_error++;
-	ft_printf("ERROR!!!!! in line %d", g_line);
+	ft_printf("ERROR!!!!! in line check_t_ind_reg %d", g_line);
 	return(NULL);
 }
 
@@ -388,7 +393,7 @@ char	*check_t_ind_reg_dir(char *param, t_to_code *f, unsigned char *op, int posi
 		return (ansver);
 	}
 	g_error++;
-	ft_printf("ERROR!!!!!????? in line %d", g_line);
+	ft_printf("ERROR!!!!!????? check_t_ind_reg_dir in line %d", g_line);
 	return(NULL);
 }
 
@@ -418,6 +423,8 @@ int		get_need_f(char *param, int a, t_comand *f, t_to_code *tmp)
 		tmp->ar[a - 1]=check_t_ind_reg(param, tmp, &op, a);
 	else if (((f->args & mask) >> sdvig) == 0xff)
 		tmp->ar[a - 1]=check_t_ind_reg_dir(param, tmp, &op, a);
+	else
+		ft_printf("kakoito pzdc\n");
 	tmp->op = tmp->op | op;
 	return (flag);
 }
@@ -485,6 +492,7 @@ void	check_f(t_to_code *tmp, char *line, int a)
 			tmp->op_est = f_list[i - 1]->op_est;
 			tmp->op_f = f_list[i - 1]->args;
 			tmp->count = f_list[i - 1]->count;
+			tmp->lz = f_list[i - 1]->lz;
 			f_full_check(&line[ft_strlen(tmp2)], f_list[i - 1], tmp);
 			add_to_cmndList(tmp);
 		}

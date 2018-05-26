@@ -14,6 +14,16 @@ asm.h
 libftprintf/ft_printf.h
 /Users/bgres/Documents/corewar/libftprintf/ft_printf.h
 
+/Users/bgres/Documents/corewar/ft_atoi_cw.c
+
+/Users/bgres/Documents/corewar/ft_split_cw.c
+unistd.h
+-
+stdlib.h
+-
+stdio.h
+-
+
 /Users/bgres/Documents/corewar/ft_strstr_cw.c
 asm.h
 /Users/bgres/Documents/corewar/asm.h
@@ -302,11 +312,19 @@ libft.h
 libft.h
 /Users/bgres/Documents/corewar/libftprintf/libft.h
 
+/Users/bgres/Documents/corewar/libftprintf/ft_strstr_cw.c
+libft.h
+/Users/bgres/Documents/corewar/libftprintf/libft.h
+
 /Users/bgres/Documents/corewar/libftprintf/ft_strsub.c
 libft.h
 /Users/bgres/Documents/corewar/libftprintf/libft.h
 
 /Users/bgres/Documents/corewar/libftprintf/ft_strtrim.c
+libft.h
+/Users/bgres/Documents/corewar/libftprintf/libft.h
+
+/Users/bgres/Documents/corewar/libftprintf/ft_strtrim_cw.c
 libft.h
 /Users/bgres/Documents/corewar/libftprintf/libft.h
 
@@ -358,5 +376,7 @@ get_next_line.h
 asm.h
 /Users/bgres/Documents/corewar/asm.h
 
-/Users/bgres/Documents/corewar/tst.c
+/Users/bgres/Documents/corewar/to_code.c
+asm.h
+/Users/bgres/Documents/corewar/asm.h
 

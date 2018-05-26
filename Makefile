@@ -12,7 +12,7 @@
 
 NAME = my_asm
 
-SRC = asm.c pars_two.c
+SRC = asm.c pars_two.c to_code.c
 
 OBJ = $(SRC:.c=.o)
 

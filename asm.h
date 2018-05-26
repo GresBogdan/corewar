@@ -36,7 +36,9 @@ int		g_cmnd_len;
 #define LLDI "lldi"
 #define LFORK "lfork"
 #define AFF "aff"
-
+# define PROG_NAME_LENGTH		(128)
+# define COMMENT_LENGTH			(2048)
+# define COREWAR_EXEC_MAGIC		0xea83f3
 typedef	struct		s_main
 {
 	unsigned char	flag; /* flag & 1 = .name; flag & 2 = .comment*/
@@ -82,8 +84,9 @@ typedef struct			s_to_code
 
 t_to_code			*comand_list;
 void				pars_two(char *line, t_main *main_asm, t_comand *all_comand, int a);
-t_comand	**make_f_list(void);
+t_comand			**make_f_list(void);
 t_to_code			*g_cmndList;
+void				start_write(char *name, t_main *main_asm);
 
 
 #endif
