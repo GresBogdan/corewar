@@ -403,7 +403,7 @@ int main(int ac, char **av)
 		ft_printf("tmp->name=|%s|%d| op=|%u| arg1 = |%d| arg2 = |%d| arg3= |%d| cmnd_len = %d cmnd_i = %d\n\n",tmp->f_name,tmp->first_b, tmp->op,tmp->args[0], tmp->args[1], tmp->args[2], tmp->cmnd_l, tmp->cmnd_i);
 		tmp = tmp->next;
 	}
-	if (g_error > 0)
+	if (g_error > 0 || ft_strlen(main_asm->name) > PROG_NAME_LENGTH || ft_strlen(main_asm->comment) > COMMENT_LENGTH)
 	{
 		ft_printf("\nOops, you hawe %d errors\n", g_error);
 	}

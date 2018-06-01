@@ -481,6 +481,7 @@ void	check_f(t_to_code *tmp, char *line, int a)
 	while(line[j] != ' ' && line[j] != '\t' && line[j] != '\0')
 		j++;
 	tmp2 = ft_copy_n(&line[0], j);
+	j = 0;
 	while(f_list[i++] != NULL)
 	{
 		if (ft_strequ(tmp2, f_list[i - 1]->name))
