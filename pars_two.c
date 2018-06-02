@@ -279,7 +279,6 @@ char		*check_t_dir(char *param, t_to_code *f, unsigned char *op, int position)
 	else if (param != NULL && ft_strlen(param) >= 3 && param[0] == '%' && param[1] == ':')
 	{
 		*op = *op | (2 << (2 * (3 - position + 1)));
-		f->arg_lbl.mas[position - 1] = ft_strdup(param);
 		return(param);
 	}
 	else if (((f->op_f & mask) >> sdvig) <= 3)
@@ -300,16 +299,10 @@ char		*check_t_dir_ind(char *param, t_to_code *f, unsigned char *op, int positio
 	i = 0;
 	ansver = check_t_dir(param, f, op, position);
 	if (tmp != *op)
-	{
-		ft_printf("param=%s i on T_DIR\n", ansver);
 		return (ansver);
-	}
 	ansver = check_t_ind(param, f, op, position);
 	if (tmp != *op)
-	{
-				ft_printf("param=%s i on T_IND\n", ansver);
 		return (ansver);
-	}
 	g_error++;
 	ft_printf("ERROR!!!!! check_t_dir_ind in line %d", g_line);
 	return(NULL);
@@ -325,16 +318,10 @@ char		*check_t_dir_reg(char *param, t_to_code *f, unsigned char *op, int positio
 	i = 0;
 	ansver = check_t_dir(param, f, op, position);
 	if (tmp != *op)
-	{
-				ft_printf("param=%s i on T_DIR\n", ansver);
 		return (ansver);
-	}
 	ansver = check_t_reg(param, f, op, position);
 	if (tmp != *op)
-	{
-				ft_printf("param=%s i on T_REG\n", ansver);
 		return (ansver);
-	}
 		g_error++;
 		ft_printf("ERROR!!!!!  check_t_dir_reg in line %d", g_line);
 	return(NULL);
@@ -350,16 +337,10 @@ char	*check_t_ind_reg(char *param, t_to_code *f, unsigned char *op, int position
 	i = 0;
 	ansver = check_t_ind(param, f, op, position);
 	if (tmp != *op)
-	{
-				ft_printf("param=%s i on T_IND\n", ansver);
 		return (ansver);
-	}
 	ansver = check_t_reg(param, f, op, position);
 	if (tmp != *op)
-	{
-				ft_printf("param=%s i on T_REG\n", ansver);
 		return (ansver);
-	}
 	g_error++;
 	ft_printf("ERROR!!!!! in line check_t_ind_reg %d", g_line);
 	return(NULL);
@@ -376,22 +357,13 @@ char	*check_t_ind_reg_dir(char *param, t_to_code *f, unsigned char *op, int posi
 	i = 0;
 	ansver = check_t_ind(param, f, op, position);
 	if (tmp != *op)
-	{
-				ft_printf("param=%s i on T_IND\n", ansver);
 		return (ansver);
-	}
 	ansver = check_t_reg(param, f, op, position);
 	if (tmp != *op)
-	{
-				ft_printf("param=%s i on T_REG\n", ansver);
 		return (ansver);
-	}
 	ansver = check_t_dir(param, f, op, position);
 	if (tmp != *op)
-	{
-				ft_printf("param=%s i on T_DIR\n", ansver);
 		return (ansver);
-	}
 	g_error++;
 	ft_printf("ERROR!!!!!????? check_t_ind_reg_dir in line %d", g_line);
 	return(NULL);
@@ -441,10 +413,8 @@ void	f_full_check(char *line, t_comand *f, t_to_code *tmp)
 	while (args[i] != NULL)
 	{
 		args[i] = ft_strtrim_cw(args[i]);
-		ft_printf("|%s| ", args[i]);
 		i++;
 	}
-	ft_printf("\n");
 	i = 0 ;
 	while(args[i] != NULL)
 		i++;
@@ -460,6 +430,8 @@ void	f_full_check(char *line, t_comand *f, t_to_code *tmp)
 		get_need_f(args[i], i + 1, f, tmp);
 		i++;
 	}
+	i = 0;
+	 free(args);
 }
 
 void	check_f(t_to_code *tmp, char *line, int a)
@@ -474,10 +446,7 @@ void	check_f(t_to_code *tmp, char *line, int a)
 	if (f_list == NULL)
 		f_list = make_f_list();
 	if (line[i] == '#')
-	{
-		ft_printf("comment\n");
 		return ;
-	}
 	while(line[j] != ' ' && line[j] != '\t' && line[j] != '\0')
 		j++;
 	tmp2 = ft_copy_n(&line[0], j);
@@ -487,7 +456,6 @@ void	check_f(t_to_code *tmp, char *line, int a)
 		if (ft_strequ(tmp2, f_list[i - 1]->name))
 		{
 			j = 1;
-			ft_printf("f = %s\n", tmp2);
 			tmp = (t_to_code *)ft_memalloc(sizeof(t_to_code));
 			tmp->first_b = i;
 			tmp->op_est = f_list[i - 1]->op_est;
@@ -500,8 +468,25 @@ void	check_f(t_to_code *tmp, char *line, int a)
 		if (i == 16 && j == 0)
 		{
 			g_error++;
-			ft_printf("error in f in line%d\n", g_line);
+			ft_printf("Oops, pleas use the available functions in line%d\n", g_line);
 		}
+	}
+	free(tmp2);
+}
+
+void	check_label(char *name)
+{
+	int		i;
+
+	i = 0;
+	while(name[i] != ':')
+	{
+		if (ft_strchr(LABEL_CHARS, name[i]) == NULL)
+		{
+			g_error++;
+			ft_printf("Oops, you're label feel bad about it character in line %d\n", g_line);
+		}
+		i++;
 	}
 }
 
@@ -519,10 +504,7 @@ void	pars_two(char *line, t_main *main_asm, t_comand *all_comand, int a)
 		while(line[i] == ' ' || line[i] == '\t')
 			i++;
 		if (line[i] == '#')
-		{
-			ft_printf("comment\n");
 			return ;
-		}
 		while(line[i + j] != ' ' && line[i + j] != '\t' && line[i + j] != '\0')
 			j++;
 		if (line[i] == '.')
@@ -534,7 +516,7 @@ void	pars_two(char *line, t_main *main_asm, t_comand *all_comand, int a)
 		{
 			tmp = (t_to_code *)ft_memalloc(sizeof(t_to_code));
 			tmp->lbl = ft_copy_n(&line[i], j);
-			ft_printf("label=|%s|\n", tmp->lbl);
+			check_label(tmp->lbl);
 			flag = 1;
 			add_to_cmndList(tmp);
 			flag = 1;
@@ -548,5 +530,4 @@ void	pars_two(char *line, t_main *main_asm, t_comand *all_comand, int a)
 		if (line[i] == '#' || line [i] == '\0')
 			return ;
 		check_f(tmp, &line[i], a);
-	ft_printf("\n");
 }

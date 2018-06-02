@@ -42,11 +42,12 @@ void	write_name(int fd, t_main *main_asm)
 	write(fd, main_asm->comment, ft_strlen(main_asm->comment));
 	write(fd, tmp, (COMMENT_LENGTH - ft_strlen(main_asm->comment)));
 	write(fd, tmp2, 4);
+	free(tmp);
+	free(tmp2);
 }
 
 void	write_t_dir(t_to_code *tmp, int fd, int i)
 {
-	ft_printf("lz = %d\n", tmp->lz);
 	if (tmp->lz == 2)
 		write_short(fd, tmp->args[i]);
 	else
@@ -98,8 +99,8 @@ void	start_write(char *name, t_main *main_asm)
 	i = 0;
 	tmp = g_cmndList;
 	fd = open(name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	ft_printf("%s fd=%d\n", name, fd);
 	write_int(fd, COREWAR_EXEC_MAGIC);
 	write_name(fd, main_asm);
 	write_comand(fd);
+	free(name);
 }

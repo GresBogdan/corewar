@@ -39,6 +39,7 @@ int		g_cmnd_len;
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
+# define LABEL_CHARS				"abcdefghijklmnopqrstuvwxyz_0123456789"
 typedef	struct		s_main
 {
 	unsigned char	flag; /* flag & 1 = .name; flag & 2 = .comment*/
@@ -82,6 +83,7 @@ typedef struct			s_to_code
 	struct s_to_code	*next;
 }						t_to_code;
 
+void				start_write(char *name, t_main *main_asm);
 t_to_code			*comand_list;
 void				pars_two(char *line, t_main *main_asm, t_comand *all_comand, int a);
 t_comand			**make_f_list(void);

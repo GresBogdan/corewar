@@ -68,7 +68,7 @@ char	*get_name(char *line, int flag)
 			exit(0);
 		}
 		i= i + 8;
-		i = i +skip_space(&line[i]);
+		i = i + skip_space(&line[i]);
 		if (line[i] != '\"')
 		{
 			g_error++;
@@ -147,7 +147,6 @@ void	check_name_comment(char *line, t_main *main_asm)
 		ft_printf("!!!ERROR in %d\n", g_line);
 		g_error++;
 	}
-	free(line);
 }
 int		check_sp(char *line)
 {
@@ -176,6 +175,7 @@ void	do_whot_need(char *line)
 
 t_main	*start_pars(int fd)
 {
+
 	char		*line;
 	t_main		*main_asm;
 	t_comand	*all_comand;
@@ -187,24 +187,57 @@ t_main	*start_pars(int fd)
 		do_whot_need(line);
 		g_line++;
 		if (line[0] != '#' && ft_strlen(line) != 0 && check_sp(line) != 1 && ((main_asm->flag & 3) != 3) )
+		{
 			check_name_comment(line, main_asm);
+		}
 		else if (line[0] != '#' && check_sp(line) != 1 && ft_strlen(line) != 0)
+		{
 			pars_two(line, main_asm, all_comand, 0);
-		else
+		}
 			free(line);
 	}
-	ft_printf("name=|%s| comment = |%s|", main_asm->name, main_asm->comment);
+				//system("leaks my_asm");
 	if(main_asm->name == NULL || main_asm->comment == NULL)
 	{
 		if (main_asm->name == NULL)
+		{
 			ft_printf("Oops, no name (\n");
-		else
+		}
+		if (main_asm->comment == NULL)
+		{
 			ft_printf("Oops, no comment(\n");
+		}
 		g_error++;
 	}
+	free(line);
+	free(all_comand);
 	return (main_asm);
+
 }
 
+void	free_list(void)
+{
+	int			i;
+	t_to_code	*tmp;
+	t_to_code	*tmp2;
+
+	i = 0;
+	tmp = g_cmndList;
+	while (tmp)
+	{
+		if(tmp->lbl != NULL)
+			free(tmp->lbl);
+		if(tmp->f_name != NULL)
+			free(tmp->f_name);
+		while(i < 4)
+		{
+			if (tmp->ar[i] != NULL)
+				free(tmp->ar[i]);
+			i++;
+		}
+		tmp = tmp->next;
+	}
+}
 void	count_cmnd_len(t_comand **f)
 {
 	t_to_code		*tmp;
@@ -243,6 +276,14 @@ void	count_cmnd_len(t_comand **f)
 		}
 		tmp = tmp->next;
 	}
+	i = 0;
+	while(f[i] != NULL)
+	{
+		free(f[i]->name);
+		free(f[i]);
+		i++;
+	}
+	free(f);
 }
 
 unsigned int	magic_with_link(t_to_code *tmp, char *a)
@@ -253,10 +294,7 @@ unsigned int	magic_with_link(t_to_code *tmp, char *a)
 	while (tmp2)
 	{
 		if (tmp2->first_b == 0 && ft_strnequ(tmp2->lbl, &a[2], ft_strlen(&a[2])))
-		{
-			ft_printf("do linka %s rastojnie = %d      %d    %d   \n", tmp2->lbl,tmp2->cmnd_i - tmp->cmnd_i, tmp2->cmnd_i, tmp->cmnd_i );
 			return ((unsigned int)(tmp2->cmnd_i - tmp->cmnd_i));
-		}
 		tmp2 = tmp2->next;
 	}
 	ft_printf("Oops, there is no such label==%s\n", a);
@@ -272,10 +310,7 @@ unsigned int	magic_with_link2(t_to_code *tmp, char *a)
 	while (tmp2)
 	{
 		if (tmp2->first_b == 0 && ft_strnequ(tmp2->lbl, &a[1], ft_strlen(&a[2])))
-		{
-			ft_printf("do linka %s rastojnie = %d      %d    %d   \n", tmp2->lbl,tmp2->cmnd_i - tmp->cmnd_i, tmp2->cmnd_i, tmp->cmnd_i );
 			return ((unsigned int)(tmp2->cmnd_i - tmp->cmnd_i));
-		}
 		tmp2 = tmp2->next;
 	}
 	ft_printf("Oops, there is no such label==%s\n", a);
@@ -321,7 +356,6 @@ unsigned int	convert_T_IND(t_to_code *tmp, char *a)
 
 void	zaebali_nazv(t_to_code *tmp, char i, char flag)
 {
-	ft_printf("%d flag \n", flag);
 	if (flag == 1)
 		tmp->args[i] = convert_T_REG(tmp, tmp->ar[i]);
 	else if (flag == 2)
@@ -341,7 +375,6 @@ void	convert_args(void)
 	tmp = g_cmndList;
 	while(tmp)
 	{
-		ft_printf("ny%d\n", tmp->count);
 		while(++i < tmp->count)
 			zaebali_nazv(tmp, i, (tmp->op & (3 << (2 * (3 - i)))) >>  (2 * (3 - i)));
 		i = -1;
@@ -357,7 +390,7 @@ char	*make_name(char *a)
 	i = 0;
 	while(a[i] != '.' && a[i] != '\0')
 		i++;
-	tmp = ft_memalloc(sizeof(char) * (i + 4));
+	tmp = ft_memalloc(sizeof(char) * (i + 5));
 	i = 0;
 	while(a[i] != '.' && a[i] != '\0')
 	{
@@ -369,48 +402,105 @@ char	*make_name(char *a)
 	tmp[i++] = 'o';
 	tmp[i++] = 'r';
 	return (tmp);
-
 }
-int main(int ac, char **av)
+
+void	need(t_to_code *tmp, char *a)
+{
+	while(tmp)
+	{
+		if (tmp->lbl != NULL)
+		{
+			if (ft_strequ(tmp->lbl, a))
+			{
+				ft_printf("Oops, you have same label [%s]\n", a);
+				g_error++;
+			}
+		}
+		tmp = tmp->next;
+	}
+}
+
+void	check_double_lbl(void)
+{
+	t_to_code	*tmp;
+
+	tmp = g_cmndList;
+	while(tmp)
+	{
+		if (tmp->lbl != NULL)
+			need(tmp->next, tmp->lbl);
+		tmp = tmp->next;
+	}
+}
+
+
+void	need2(int i, char **av, t_main *main_asm, char *name)
 {
 	int		fd;
-	t_to_code	*tmp;
-	t_main		*main_asm;
-	g_line = 0;
-	g_error = 0;
-	g_cmndList = NULL;
-	g_cmnd_len = 0;
-	if (ac < 2)
-	{
-		ft_printf("no argument\n");
-		return (0);
-	}
+
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0 || ft_strlen(av[1]) < 3 || av[1][ft_strlen(av[1]) - 1] != 's' || av[1][ft_strlen(av[1]) - 2] != '.' || ft_strlen(av[1]) < 3)
 	{
 		ft_printf("wrong file\n");
-		return (0);
+		return ;
 	}
 	main_asm = start_pars(fd);
-	//system("leaks my_asm");
-	ft_printf("\n\n");
-	count_cmnd_len(NULL);
-	convert_args();
-	tmp = g_cmndList;
-	ft_printf("error = %d\n", g_error);
-	while(tmp)
-	{
-		ft_printf("tmp->name=|%s|%d| op=|%u| arg1 = |%d| arg2 = |%d| arg3= |%d| cmnd_len = %d cmnd_i = %d\n\n",tmp->f_name,tmp->first_b, tmp->op,tmp->args[0], tmp->args[1], tmp->args[2], tmp->cmnd_l, tmp->cmnd_i);
-		tmp = tmp->next;
-	}
 	if (g_error > 0 || ft_strlen(main_asm->name) > PROG_NAME_LENGTH || ft_strlen(main_asm->comment) > COMMENT_LENGTH)
 	{
 		ft_printf("\nOops, you hawe %d errors\n", g_error);
 	}
 	else
 	{
+
+			count_cmnd_len(NULL);
+			check_double_lbl();
+			convert_args();
 			start_write(make_name(av[1]), main_asm);
-		ft_printf("\nvse zbs cmndLen=%d!\n", g_cmnd_len);
+			name = make_name(av[1]);
+		ft_printf("vse zbs file %s sdelan cmndLen=%d!\n",name, g_cmnd_len);
+		free(name);
 	}
+}
+int main(int ac, char **av)
+{
+	int			fd;
+	t_main		*main_asm;
+	char		*name;
+	int			i;
+
+	i = 1;
+	if (ac < 2)
+	{
+		ft_printf("no argument\n");
+		return (0);
+	}
+	while(i < ac)
+	{
+			fd = open(av[i], O_RDONLY);
+		if (fd < 0 || ft_strlen(av[1]) < 3 || av[1][ft_strlen(av[1]) - 1] != 's' || av[1][ft_strlen(av[1]) - 2] != '.' || ft_strlen(av[1]) < 3)
+			ft_printf("wrong file n-%i\n", i - 1);
+		else
+		{
+			g_line = 0;
+			g_error = 0;
+			g_cmndList = NULL;
+			g_cmnd_len = 0;
+			main_asm = start_pars(fd);
+			count_cmnd_len(NULL);
+			check_double_lbl();
+			convert_args();
+			if (g_error > 0 || ft_strlen(main_asm->name) > PROG_NAME_LENGTH || ft_strlen(main_asm->comment) > COMMENT_LENGTH)
+				ft_printf("Oops, you hawe %d errors\n", g_error);
+			else
+			{
+				start_write(make_name(av[i]), main_asm);
+				name = make_name(av[i]);
+				ft_printf("vse zbs file %s sdelan cmndLen=%d!\n",name, g_cmnd_len);
+				free(name);
+			}
+		}
+		i++;
+	}
+	
 	return (0);
 }
