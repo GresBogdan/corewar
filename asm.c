@@ -499,7 +499,6 @@ int main(int ac, char **av)
 	t_main		*main_asm;
 	char		*name;
 	int			i;
-	t_to_code	*tmp;
 
 	i = 1;
 	if (ac < 2)
@@ -529,15 +528,6 @@ int main(int ac, char **av)
 			{
 				start_write(make_name(av[i]), main_asm);
 				ft_printf("vse zbs file %s sdelan cmndLen=%d!\n",name, g_cmnd_len);
-				tmp = g_cmndList;
-				while(tmp)
-				{
-					if (tmp->lbl != NULL)
-						ft_printf("label = %s, i=%d l=%d\n", tmp->lbl, tmp->cmnd_i, tmp->cmnd_l);
-					else
-						ft_printf("b=%d, op=%u, 1r=%d 2r=%d 3r=%d i=%d l=%d\n", tmp->first_b, tmp->op, tmp->args[0],tmp->args[1],tmp->args[2], tmp->cmnd_i, tmp->cmnd_l);
-					tmp = tmp->next;
-				}
 			}
 			free(name);
 			if (main_asm->name != NULL)
