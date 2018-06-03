@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.9)
-project(corewar)
+project(push)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(corewar
+add_executable(push
         libftprintf/a.c
         libftprintf/b.c
         libftprintf/c.c
@@ -88,10 +88,6 @@ add_executable(corewar
         libftprintf/libft.h
         asm.c
         asm.h
-        ft_atoi_cw.c
-        ft_split_cw.c
-        ft_strstr_cw.c
-        lem_in.h
         pars_two.c
         to_code.c
-        )
+        tst.c)

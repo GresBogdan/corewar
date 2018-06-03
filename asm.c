@@ -27,33 +27,37 @@ char	*get_name(char *line, int flag)
 	int		i;
 	int		j;
 	char	*name;
+	int 	f;
 
 	i = skip_space(line);
 	j = 0;
+	f = 0;
 	if (flag == 1)
 	{
 		if ((ft_strstr_cw(&line[i], ".name")) != 0)
 		{
 			g_error++;
-			ft_printf("error on line %d", g_line);
+			ft_printf("error on line %d\n", g_line);
 		}
 		i= i + 5;
 		i = i +skip_space(&line[i]);
 		if (line[i] != '\"')
 		{
 			g_error++;
-			ft_printf("error on line %d", g_line);
+			ft_printf("error on line %d\n", g_line);
 		}
 		i++;
-		while (line[i + j] != '\"')
+		while (line[i + j] != '\"' && line[i + j] != '\0')
 			j++;
+		if(line[i + j] == '\"')
+			f = 1;
 		j++;
 		while ((line[i + j] == ' ' || line[i + j] == '\t'))
 			j++;
-		if (line[i + j] != '\0' && line[i +j] != '#')
+		if (line[i + j] != '\0' && line[i +j] != '#' && f != 1)
 		{
 			g_error++;
-			ft_printf("error on line %d", g_line);			
+			ft_printf("error on line %d\n", g_line);			
 		}
 	}
 	else
@@ -61,30 +65,35 @@ char	*get_name(char *line, int flag)
 		if ((ft_strstr_cw(&line[i], ".comment")) != 0)
 		{
 			g_error++;
-			ft_printf("error on line %d", g_line);
+			ft_printf("error on line %d\n", g_line);
 		}
 		i= i + 8;
 		i = i + skip_space(&line[i]);
 		if (line[i] != '\"')
 		{
 			g_error++;
-			ft_printf("error on line %d", g_line);
+			ft_printf("error on line %d\n", g_line);
 		}
 		i++;
-		while (line[i + j] != '\"')
+		while (line[i + j] != '\"' && line[i + j] != '\0')
 			j++;
+		if(line[i + j] == '\"')
+			f = 1;
 		j++;
 		while ((line[i + j] == ' ' || line[i + j] == '\t'))
 			j++;
-		if (line[i + j] != '\0' && line[i +j] != '#')
+		if (line[i + j] != '\0' && line[i +j] != '#'&& f != 1)
 		{
 			g_error++;
-			ft_printf("error on line %d", g_line);		
+			ft_printf("error on line %d\n", g_line);		
 		}
 	}
+	f = 0;
 	j = 0;
-	while (line[i + j] != '\"')
+	while (line[i + j] != '\"' && line[i + j] != '\0')
 		j++;
+	if (line[i + j] == '\"')
+		f = 1;
 	name = (char *)ft_memalloc(j * sizeof(char));
 	while (--j >= 0)
 	{
@@ -111,7 +120,7 @@ void	check_name_comment(char *line, t_main *main_asm)
 			if ((main_asm->flag & 1) != 0 || (ft_strstr_cw(&line[k], ".name") != 0))
 			{
 				g_error++;
-				ft_printf("double name, chek line %d", g_line);
+				ft_printf("double name, chek line %d\n", g_line);
 				exit(0);
 			}
 			else
@@ -126,7 +135,7 @@ void	check_name_comment(char *line, t_main *main_asm)
 			if ((main_asm->flag & 2) != 0 || (ft_strstr_cw(&line[k], ".comment") != 0))
 			{
 				g_error++;
-				ft_printf("double comment, chek line %d", g_line);
+				ft_printf("double comment, chek line %d\n", g_line);
 				exit(0);
 			}
 			else 
@@ -138,7 +147,7 @@ void	check_name_comment(char *line, t_main *main_asm)
 	}
 	else
 	{
-		ft_printf("!!!ERROR in %d\n", g_line);
+		ft_printf("!!!ERROR in line%d\n", g_line);
 		g_error++;
 	}
 }
@@ -288,7 +297,7 @@ unsigned int	magic_with_link(t_to_code *tmp, char *a)
 			return ((unsigned int)(tmp2->cmnd_i - tmp->cmnd_i));
 		tmp2 = tmp2->next;
 	}
-	ft_printf("Oops, there is no such label==%s\n", a);
+	ft_printf("Oops, there is no such label [%s]\n", a);
 	g_error++;
 	return ('(');
 }
@@ -304,7 +313,7 @@ unsigned int	magic_with_link2(t_to_code *tmp, char *a)
 			return ((unsigned int)(tmp2->cmnd_i - tmp->cmnd_i));
 		tmp2 = tmp2->next;
 	}
-	ft_printf("Oops, there is no such label==%s\n", a);
+	ft_printf("Oops, there is no such label[%s]\n", a);
 	g_error++;
 	return ('(');
 }
@@ -317,9 +326,11 @@ unsigned int	convert_T_REG(t_to_code *tmp, char *a)
 	{
 		res = -1;
 		res = ft_atoi(&a[1]);
+		if (res > 16)
+			ft_printf("Warning, youre T_REG > 16\n");
 		return (res);
 	}
-	ft_printf("Oops, youre T_REG-|%a| feels bad\n");
+	ft_printf("Oops, youre T_REG-[%a] feels bad\n");
 	g_error++;
 	return (-1);
 }
@@ -428,17 +439,18 @@ void	check_double_lbl(void)
 void	need2(int i, char **av, t_main *main_asm, char *name)
 {
 	int		fd;
+	char	a;
 
 	fd = open(av[1], O_RDONLY);
-	if (fd < 0 || ft_strlen(av[1]) < 3 || av[1][ft_strlen(av[1]) - 1] != 's' || av[1][ft_strlen(av[1]) - 2] != '.' || ft_strlen(av[1]) < 3)
+	if (fd < 0 || ft_strlen(av[1]) < 3 || av[1][ft_strlen(av[1]) - 1] != 's' || av[1][ft_strlen(av[1]) - 2] != '.' || ft_strlen(av[1]) < 3 || read(fd, &a, 0) == -1)
 	{
-		ft_printf("wrong file\n");
+		ft_printf("Oops, wrong file\n");
 		return ;
 	}
 	main_asm = start_pars(fd);
 	if (g_error > 0 || ft_strlen(main_asm->name) > PROG_NAME_LENGTH || ft_strlen(main_asm->comment) > COMMENT_LENGTH)
 	{
-		ft_printf("\nOops, you hawe %d errors\n", g_error);
+		ft_printf("Oops, you hawe %d errors\n", g_error);
 	}
 	else
 	{
@@ -448,7 +460,7 @@ void	need2(int i, char **av, t_main *main_asm, char *name)
 			convert_args();
 			start_write(make_name(av[1]), main_asm);
 			name = make_name(av[1]);
-		ft_printf("vse zbs file %s sdelan cmndLen=%d!\n",name, g_cmnd_len);
+		ft_printf("vse zbs file %s sdelan cmndL\n",name, g_cmnd_len);
 		free(name);
 	}
 }

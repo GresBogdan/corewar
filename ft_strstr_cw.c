@@ -27,7 +27,7 @@ int		ft_strstr_cw(const char *s1, const char *s2)
 		if (s1[i] == '\"')
 		{
 			i++;
-			while (s1[i] != '\"')
+			while (s1[i] != '\"' && s1[i] != '\0')
 				i++;
 		}
 		while (s2[j] == s1[i + j] && s1[i + j] != '\0')

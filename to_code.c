@@ -23,7 +23,6 @@ void	write_int(int fd, unsigned int m)
 void	write_short(int fd, unsigned int mm)
 {
 	unsigned short	m;
-	printf("\n\n\n\n\n\n\n\n\n!!!!!!!!!!!!!!!!!%d\n\n\n\n\n\n\n\n\n\n", mm);
 	m = (unsigned short)mm;
 	m = (m >> 8) | (m << 8);
 	write(fd, (char *)&m, 2);

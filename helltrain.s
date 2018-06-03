@@ -1,8 +1,8 @@
 #by zaz, still not as good as rainbowdash though
 #2013
 
-.name		""
-.comment	""
+.name		"asfdsfgsdf sdf sd fsd f ds dfs"
+.comment	"sdfsd fsd dsf sd fsdf sdf  sd"
 
 entry:
 	sti		r1, %:beegees_gen, %1

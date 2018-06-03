@@ -54,45 +54,45 @@ RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/bgres/Documents/corewar
+CMAKE_SOURCE_DIR = /Users/bgres/Documents/push
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/bgres/Documents/corewar/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/bgres/Documents/push/cmake-build-debug
 
 #=============================================================================
-# Target rules for target CMakeFiles/corewar.dir
+# Target rules for target CMakeFiles/push.dir
 
 # All Build rule for target.
-CMakeFiles/corewar.dir/all:
-	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/depend
-	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86 "Built target corewar"
-.PHONY : CMakeFiles/corewar.dir/all
+CMakeFiles/push.dir/all:
+	$(MAKE) -f CMakeFiles/push.dir/build.make CMakeFiles/push.dir/depend
+	$(MAKE) -f CMakeFiles/push.dir/build.make CMakeFiles/push.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/bgres/Documents/push/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84 "Built target push"
+.PHONY : CMakeFiles/push.dir/all
 
 # Include target in all.
-all: CMakeFiles/corewar.dir/all
+all: CMakeFiles/push.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/corewar.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles 86
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/corewar.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/bgres/Documents/corewar/cmake-build-debug/CMakeFiles 0
-.PHONY : CMakeFiles/corewar.dir/rule
+CMakeFiles/push.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/bgres/Documents/push/cmake-build-debug/CMakeFiles 84
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/push.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/bgres/Documents/push/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/push.dir/rule
 
 # Convenience name for target.
-corewar: CMakeFiles/corewar.dir/rule
+push: CMakeFiles/push.dir/rule
 
-.PHONY : corewar
-
-# clean rule for target.
-CMakeFiles/corewar.dir/clean:
-	$(MAKE) -f CMakeFiles/corewar.dir/build.make CMakeFiles/corewar.dir/clean
-.PHONY : CMakeFiles/corewar.dir/clean
+.PHONY : push
 
 # clean rule for target.
-clean: CMakeFiles/corewar.dir/clean
+CMakeFiles/push.dir/clean:
+	$(MAKE) -f CMakeFiles/push.dir/build.make CMakeFiles/push.dir/clean
+.PHONY : CMakeFiles/push.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/push.dir/clean
 
 .PHONY : clean
 
