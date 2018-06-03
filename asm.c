@@ -36,7 +36,6 @@ char	*get_name(char *line, int flag)
 		{
 			g_error++;
 			ft_printf("error on line %d", g_line);
-			exit(0);
 		}
 		i= i + 5;
 		i = i +skip_space(&line[i]);
@@ -44,7 +43,6 @@ char	*get_name(char *line, int flag)
 		{
 			g_error++;
 			ft_printf("error on line %d", g_line);
-			exit(0);
 		}
 		i++;
 		while (line[i + j] != '\"')
@@ -55,8 +53,7 @@ char	*get_name(char *line, int flag)
 		if (line[i + j] != '\0' && line[i +j] != '#')
 		{
 			g_error++;
-			ft_printf("error on line %d", g_line);
-			exit(0);			
+			ft_printf("error on line %d", g_line);			
 		}
 	}
 	else
@@ -65,7 +62,6 @@ char	*get_name(char *line, int flag)
 		{
 			g_error++;
 			ft_printf("error on line %d", g_line);
-			exit(0);
 		}
 		i= i + 8;
 		i = i + skip_space(&line[i]);
@@ -73,7 +69,6 @@ char	*get_name(char *line, int flag)
 		{
 			g_error++;
 			ft_printf("error on line %d", g_line);
-			exit(0);
 		}
 		i++;
 		while (line[i + j] != '\"')
@@ -84,8 +79,7 @@ char	*get_name(char *line, int flag)
 		if (line[i + j] != '\0' && line[i +j] != '#')
 		{
 			g_error++;
-			ft_printf("error on line %d", g_line);
-			exit(0);			
+			ft_printf("error on line %d", g_line);		
 		}
 	}
 	j = 0;
@@ -265,6 +259,24 @@ void	count_cmnd_len(t_comand **f)
 	free(f);
 }
 
+int		ft_strequ_cw(char const *s1, char const *s2)
+{
+	int		i;
+
+	if (s1 && s2)
+	{
+		i = 0;
+		while (s1[i] != ':' || s2[i] != '\0')
+		{
+			if (s1[i] != s2[i])
+				return (0);
+			i++;
+		}
+		return (1);
+	}
+	return (0);
+}
+
 unsigned int	magic_with_link(t_to_code *tmp, char *a)
 {
 	t_to_code	*tmp2;
@@ -272,7 +284,7 @@ unsigned int	magic_with_link(t_to_code *tmp, char *a)
 	tmp2 = g_cmndList;
 	while (tmp2)
 	{
-		if (tmp2->first_b == 0 && ft_strnequ(tmp2->lbl, &a[2], ft_strlen(&a[2])))
+		if (tmp2->first_b == 0 && ft_strequ_cw(tmp2->lbl, &a[2]))
 			return ((unsigned int)(tmp2->cmnd_i - tmp->cmnd_i));
 		tmp2 = tmp2->next;
 	}
@@ -288,7 +300,7 @@ unsigned int	magic_with_link2(t_to_code *tmp, char *a)
 	tmp2 = g_cmndList;
 	while (tmp2)
 	{
-		if (tmp2->first_b == 0 && ft_strnequ(tmp2->lbl, &a[1], ft_strlen(&a[2])))
+		if (tmp2->first_b == 0 && ft_strequ_cw(tmp2->lbl, &a[1]))
 			return ((unsigned int)(tmp2->cmnd_i - tmp->cmnd_i));
 		tmp2 = tmp2->next;
 	}
@@ -487,6 +499,7 @@ int main(int ac, char **av)
 	t_main		*main_asm;
 	char		*name;
 	int			i;
+	t_to_code	*tmp;
 
 	i = 1;
 	if (ac < 2)
@@ -509,15 +522,24 @@ int main(int ac, char **av)
 			count_cmnd_len(NULL);
 			check_double_lbl();
 			convert_args();
+			name = make_name(av[i]);
 			if (g_error > 0 || ft_strlen(main_asm->name) > PROG_NAME_LENGTH || ft_strlen(main_asm->comment) > COMMENT_LENGTH || g_cmnd_len > CHAMP_MAX_SIZE)
-				ft_printf("Oops, you hawe %d errors\n", g_error);
+				ft_printf("Oops, you hawe %d errors in file %s\n", g_error, name);
 			else
 			{
 				start_write(make_name(av[i]), main_asm);
-				name = make_name(av[i]);
 				ft_printf("vse zbs file %s sdelan cmndLen=%d!\n",name, g_cmnd_len);
-				free(name);
+				tmp = g_cmndList;
+				while(tmp)
+				{
+					if (tmp->lbl != NULL)
+						ft_printf("label = %s, i=%d l=%d\n", tmp->lbl, tmp->cmnd_i, tmp->cmnd_l);
+					else
+						ft_printf("b=%d, op=%u, 1r=%d 2r=%d 3r=%d i=%d l=%d\n", tmp->first_b, tmp->op, tmp->args[0],tmp->args[1],tmp->args[2], tmp->cmnd_i, tmp->cmnd_l);
+					tmp = tmp->next;
+				}
 			}
+			free(name);
 			if (main_asm->name != NULL)
 				free(main_asm->name);
 			if (main_asm->comment != NULL)
