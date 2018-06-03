@@ -94,7 +94,7 @@ char	*get_name(char *line, int flag)
 		j++;
 	if (line[i + j] == '\"')
 		f = 1;
-	name = (char *)ft_memalloc(j * sizeof(char));
+	name = (char *)ft_memalloc((j + 1) * sizeof(char));
 	while (--j >= 0)
 	{
 		name[j] = line[i + j];
