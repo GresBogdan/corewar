@@ -202,12 +202,13 @@ t_main	*start_pars(int fd)
 		if (main_asm->name == NULL)
 		{
 			ft_printf("Oops, no name (\n");
+					g_error++;
 		}
 		if (main_asm->comment == NULL)
 		{
 			ft_printf("Oops, no comment(\n");
+					g_error++;
 		}
-		g_error++;
 	}
 	free(line);
 	free(all_comand);
@@ -215,29 +216,7 @@ t_main	*start_pars(int fd)
 
 }
 
-void	free_list(void)
-{
-	int			i;
-	t_to_code	*tmp;
-	t_to_code	*tmp2;
 
-	i = 0;
-	tmp = g_cmndList;
-	while (tmp)
-	{
-		if(tmp->lbl != NULL)
-			free(tmp->lbl);
-		if(tmp->f_name != NULL)
-			free(tmp->f_name);
-		while(i < 4)
-		{
-			if (tmp->ar[i] != NULL)
-				free(tmp->ar[i]);
-			i++;
-		}
-		tmp = tmp->next;
-	}
-}
 void	count_cmnd_len(t_comand **f)
 {
 	t_to_code		*tmp;
@@ -461,6 +440,47 @@ void	need2(int i, char **av, t_main *main_asm, char *name)
 		free(name);
 	}
 }
+
+// void	free_list(t_to_code *tmp)
+// {
+// 	t_to_code	*tmp2;
+
+// 	while(tmp)
+// 	{
+// 		tmp2 = tmp->next;
+// 		if(tmp->lbl != NULL)
+// 			free(tmp->lbl);
+// 		if(tmp->f_name != NULL)
+// 			free(tmp->f_name);
+// 		tmp = tmp2;
+// 	}
+// }
+
+void	free_list(void)
+{
+	int			i;
+	t_to_code	*tmp;
+	t_to_code	*tmp2;
+
+	tmp = g_cmndList;
+	while (tmp)
+	{
+		if(tmp->lbl != NULL)
+			free(tmp->lbl);
+		if(tmp->f_name != NULL)
+			free(tmp->f_name);
+		i = 0;
+		while(i < 4)
+		{
+			if (tmp->ar[i] != NULL)
+				free(tmp->ar[i]);
+			i++;
+		}
+		free(tmp);
+		tmp = tmp->next;
+	}
+}
+
 int main(int ac, char **av)
 {
 	int			fd;
@@ -489,7 +509,7 @@ int main(int ac, char **av)
 			count_cmnd_len(NULL);
 			check_double_lbl();
 			convert_args();
-			if (g_error > 0 || ft_strlen(main_asm->name) > PROG_NAME_LENGTH || ft_strlen(main_asm->comment) > COMMENT_LENGTH)
+			if (g_error > 0 || ft_strlen(main_asm->name) > PROG_NAME_LENGTH || ft_strlen(main_asm->comment) > COMMENT_LENGTH || g_cmnd_len > CHAMP_MAX_SIZE)
 				ft_printf("Oops, you hawe %d errors\n", g_error);
 			else
 			{
@@ -498,9 +518,15 @@ int main(int ac, char **av)
 				ft_printf("vse zbs file %s sdelan cmndLen=%d!\n",name, g_cmnd_len);
 				free(name);
 			}
+			if (main_asm->name != NULL)
+				free(main_asm->name);
+			if (main_asm->comment != NULL)
+				free(main_asm->comment);
+			free_list();
+			if (main_asm != NULL)
+			 free(main_asm);
 		}
 		i++;
 	}
-	
 	return (0);
 }

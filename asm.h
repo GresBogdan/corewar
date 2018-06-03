@@ -39,6 +39,8 @@ int		g_cmnd_len;
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
+# define MEM_SIZE				(4*1024)
+# define CHAMP_MAX_SIZE			(MEM_SIZE / 6)
 # define LABEL_CHARS				"abcdefghijklmnopqrstuvwxyz_0123456789"
 typedef	struct		s_main
 {
@@ -47,10 +49,6 @@ typedef	struct		s_main
 	char			*comment;
 }					t_main;
 
-typedef struct		s_arg_lbl
-{
-	char			*mas[3];
-}					t_arg_lbl;
 
 typedef struct		s_comand
 {
@@ -68,7 +66,6 @@ typedef struct			s_to_code
 {
 	char				*lbl;
 	char				*f_name;
-	struct s_arg_lbl	arg_lbl;
 	unsigned char		first_b;
 	unsigned char		op;
 	char				lz;
