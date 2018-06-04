@@ -41,6 +41,8 @@ int		g_cmnd_len;
 # define COREWAR_EXEC_MAGIC		0xea83f3
 # define MEM_SIZE				(4*1024)
 # define CHAMP_MAX_SIZE			(MEM_SIZE / 6)
+# define NAME_CMD_STRING			".name"
+# define COMMENT_CMD_STRING		".comment"
 # define LABEL_CHARS				"abcdefghijklmnopqrstuvwxyz_0123456789"
 typedef	struct		s_main
 {

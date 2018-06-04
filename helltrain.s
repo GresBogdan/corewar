@@ -1,7 +1,11 @@
 #by zaz, still not as good as rainbowdash though
 #2013
 
-.name		"asfdsfgsdf sdf sd fsd f ds dfs"
+.name		"asfdsfgsdf sdf sd fsd fsd              #
+
+
+
+ ds dfs"
 .comment	"sdfsd fsd dsf sd fsdf sdf  sd"
 
 entry:

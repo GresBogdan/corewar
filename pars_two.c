@@ -172,7 +172,7 @@ t_comand	**make_f_list(void)
 	a[13]->name = ft_strdup(LLDI);
 	a[13]->op = 1;
 	a[13]->lz = 2;
-	a[13]->args = 0xff1301;
+	a[13]->args = 0xff1303;
 	a[13]->count = 3;
 	a[13]->op_est = 1;
 	a[13]->cmnd_l = 0;
