@@ -49,14 +49,11 @@ static unsigned int	return_2(const char *a)
 	return ((unsigned int)(result * z));
 }
 
-unsigned int		ft_atoi_cw(const char *a , char size)
+unsigned int		ft_atoi_cw(const char *a, char size)
 {
 	if (size == 2)
-		return(return_1(a));
+		return (return_1(a));
 	else
-		return(return_2(a));
-
-	
+		return (return_2(a));
 	return (-1);
 }
-

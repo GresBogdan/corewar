@@ -65,7 +65,7 @@ int					ft_sqrt(int nb);
 int					ft_ispar(int a);
 size_t				ft_strlcat(char *dst, const char *src, size_t dsize);
 size_t				ft_strlen(const char *s);
-int					ft_atoi_cw(const char *a , char size);
+int					ft_atoi_cw(const char *a, char size);
 
 void				*ft_memalloc(size_t size);
 void				*ft_memccpy(void *s1, const void *s2, int c, size_t n);

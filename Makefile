@@ -10,9 +10,9 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = my_asm
+NAME = asm
 
-SRC = asm.c pars_two.c to_code.c
+SRC = asm.c pars_two.c to_code.c p1.c p2.c p3.c p4.c p5.c p6.c p7.c p10.c p11.c p12.c p13.c p14.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -22,8 +22,7 @@ HEADER = asm.h
 
 LIBPATH = libftprintf/libftprintf.a
 
-SFLAG = -c  -O3 -Os
-#-Wall -Werror -Wextra
+SFLAG = -c  -O3 -Os -Wall -Wextra -Werror
 .PHONY: all clean fclean re
 
 .NOTPARALLEL: all clean fclean re

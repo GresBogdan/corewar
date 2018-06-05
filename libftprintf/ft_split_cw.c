@@ -78,7 +78,7 @@ char			**ft_split_cw(char const *s)
 			n++;
 		}
 		av[i] = (char *)malloc(sizeof(char) * (n + 2));
-		fill(&s[j - n], av[i++], n -1);
+		fill(&s[j - n], av[i++], n - 1);
 		n = 0;
 	}
 	av[i] = NULL;
